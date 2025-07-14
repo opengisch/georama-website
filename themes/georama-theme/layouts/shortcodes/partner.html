@@ -1,0 +1,15 @@
+<div class="col-sm-6 col-md-4" data-region="{{ .Get "region" }}">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <span class="label label-default pull-right">🇪🇺 {{ .Get "country" }}</span>
+      <h4 class="panel-title">
+        <img src="{{ .Get "logo" }}" alt="{{ .Get "name" }}" class="partner-logo">
+        {{ .Get "name" }}
+      </h4>
+      <p>{{ .Get "description" }}</p>
+    </div>
+    <div class="panel-footer">
+      <a href="{{ .Get "url" }}" class="btn btn-success" target="_blank">Visit Website</a>
+    </div>
+  </div>
+</div>
