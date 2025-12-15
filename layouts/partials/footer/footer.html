@@ -1,0 +1,12 @@
+<footer class="site-footer py-4 mt-auto">
+  <div class="container text-center">
+    {{ with .Site.Menus.footer }}
+    <div class="d-flex justify-content-center gap-3 mb-2">
+      {{ range . }}
+      <a class="small text-muted text-decoration-none" href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+    <small class="text-muted">{{ .Site.Copyright | safeHTML }}</small>
+  </div>
+</footer>

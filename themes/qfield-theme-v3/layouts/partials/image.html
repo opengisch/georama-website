@@ -1,0 +1,49 @@
+{{- $src := .src | default (printf "[missing src] %v" .) -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $style := .style | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $decoding := .decoding | default "async" -}}
+{{- $sizes := .sizes | default "640,960,1280" -}}
+{{- $widths := slice 400 640 960 1280 1600 -}}
+{{- $isRemote := hasPrefix $src "http" -}}
+
+{{- if $isRemote }}
+  <img
+    src="{{ $src }}"
+    alt="{{ $alt }}"
+    class="img-fluid {{ $class }}"
+    loading="{{ $loading }}"
+    decoding="{{ $decoding }}"
+  >
+{{- else }}
+  {{- $original := resources.Get $src -}}
+  {{- if not $original }}
+    <img
+      src="{{ $src | relURL }}"
+      alt="{{ $alt }}"
+      class="img-fluid {{ $class }}"
+      loading="{{ $loading }}"
+      decoding="{{ $decoding }}"
+    >
+  {{- else }}
+    {{- $processed := slice -}}
+    {{- range $widths }}
+      {{- $resized := $original.Resize (printf "%dx" .) -}}
+      {{- if $resized }}
+        {{- $processed = $processed | append $resized -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $fallback := index $processed 0 | default $original -}}
+    <img
+      src="{{ $fallback.RelPermalink }}"
+      srcset="{{ range $processed }}{{ .RelPermalink }} {{ .Width }}w, {{ end }}"
+      sizes="{{ $sizes }}"
+      alt="{{ $alt }}"
+      class="img-fluid {{ $class }}"
+      style="{{ $style }}"
+      loading="{{ $loading }}"
+      decoding="{{ $decoding }}"
+    >
+  {{- end }}
+{{- end }}

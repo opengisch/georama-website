@@ -1,182 +1,138 @@
 {{ define "main" }}
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+{{ $home := site.Data.home }}
 
-
-
-  <body>
-    <!-- Section #0: navigation -->
-    {{ partial "navbar.html" . }}
-
-
-  <!-- Section #1: carousel -->
-  <div id="maincarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#maincarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#maincarousel" data-slide-to="1"></li>
-      <li data-target="#maincarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active" style="background-image: url('images/georama_datasources.png');">
-        <div class="carousel-caption custom-caption">
-          <h2 class="carousel-title">
-            Collect <br>and publish <span style="color: #80cc28;">data.</span>
-          </h2>
-          <div class="qf-button">
-            <a href="https://docs.georama.io" target="_blank" title="Get started">
-              <i class="fas fa-rocket"></i> GET STARTED
-            </a>
+<main class="landing-page">
+  <section id="hero" class="section-hero position-relative overflow-hidden py-5">
+    <div class="container position-relative">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          {{ with $home.hero }}
+          <p class="text-uppercase fw-semibold text-brand tracking-wide small mb-2">{{ .eyebrow }}</p>
+          <h1 class="hero-title fw-bold mb-3">{{ .title }}</h1>
+          <p class="lead text-secondary mb-4">{{ .description }}</p>
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <span class="badge rounded-pill text-uppercase text-brand-emphasis bg-brand-soft px-3 py-2">{{ .visual_label }}</span>
+            <p class="mb-0 small text-muted">{{ .visual_text }}</p>
           </div>
+          {{ with .cta }}
+          <a class="btn btn-primary btn-lg shadow-sm" href="{{ .url }}">{{ .text }}</a>
+          {{ end }}
+          {{ end }}
         </div>
-      </div>
-
-      <div class="item" style="background-image: url('images/georama_landscape.png');">
-        <div class="carousel-caption custom-caption">
-          <h2 class="carousel-title">
-            manage<br>and handle <span style="color: #80cc28;">permissions.</span>
-          </h2>
-          <div class="qf-button">
-            <a href="https://demo.georama.io" target="_blank" title="Register now">
-            <i class="fas fa-cloud"></i> CHECK THE DEMO</a>
-          </div>
-        </div>
-      </div>
-      <div class="item" style="background-image: url('images/georama_mountain.png');">
-        <div class="carousel-caption custom-caption">
-          <h2 class="carousel-title">
-            Serve<br>with a <span style="color: #80cc28;">breaze.</span>
-          </h2>
-          <div class="qf-button">
-            <a href="/assistance.html" target="_blank" title="Get in touch">
-            <i class="fas fa-handshake-angle"></i> GET ASSISTANCE</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#maincarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#maincarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
-  <!-- Section #2: claim -->
-  <section class="section-spacing text-center" style="margin-bottom: 25px">
-    <h2>The most powerful and efficient way to manage and publish your data</h2>
-  </section>
-
-  <!-- Section #3: main points -->
-  <section id="highlights" class="section-spacing text-center">
-    <div class="container" style="max-width: 1140px">
-      <div class="row">
-        <div class="col-12">
-          <p style="text-align: center; margin-bottom: 22px">
-            Georama is a developer-first framework for managing and publishing spatial data. Whether you're running environmental assessments, urban planning tools, or community mapping projects, Georama gives you the tools to scale your operations without reinventing the wheel.
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <!-- First row of features -->
-        <div class="col-qf-4 col-sm-4 col-md-4 col-lg-4">
-          <div class="feature text-center">
-            <img src="images/icons/icon_unified_integration.png" alt="Unified Integration" style="width: 55%" />
-            <h3>Unified Integration</h3>
-            <p>
-              Combine WMS, WFS, and QGIS data into one seamless platform. Georama harmonizes your geospatial stack without custom glue code.
-            </p>
-          </div>
-        </div>
-        <div class="col-qf-4 col-sm-4 col-md-4 col-lg-4">
-          <div class="feature text-center">
-            <img src="images/icons/icon_modular_architecture.png" alt="Modular Architecture" style="width: 50%" />
-            <h3>Modular Architecture</h3>
-            <p>
-              Build your system your way. Each Georama module is fully decoupled and API-first — ready to scale with your needs.
-            </p>
-          </div>
-        </div>
-        <div class="col-qf-4 col-sm-4 col-md-4 col-lg-4">
-          <div class="feature text-center">
-            <img src="images/icons/icon_integrated_webgis.png" alt="WebGIS Viewer" style="width: 50%" />
-            <h3>Integrated WebGIS</h3>
-            <p>
-              Visualize published layers instantly in the browser. Our built-in viewer is fast, clean, and ready for both public and private maps.
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <!-- Second row of features -->
-        <div class="col-qf-4 col-sm-4 col-md-4 col-lg-4">
-          <div class="feature text-center">
-            <img src="images/icons/icon_granular_permissions.png" alt="Permissions" style="width: 50%" />
-            <h3>Granular Permissions</h3>
-            <p>
-              Control access by user, group, or dataset. Georama lets you publish confidently with baked-in, role-aware security.
-            </p>
-          </div>
-        </div>
-        <div class="col-qf-4 col-sm-4 col-md-4 col-lg-4">
-          <div class="feature text-center">
-            <img src="images/icons/icon_ogc_api.png" alt="OGC Compliance" style="width: 50%" />
-            <h3>OGC-Compliant APIs</h3>
-            <p>
-              Built on standards: OAPIF, WMS 1.3.0, GeoJSON. Georama plays well with QGIS, OpenLayers, and any modern GIS stack.
-            </p>
-          </div>
-        </div>
-        <div class="col-qf-4 col-sm-4 col-md-4 col-lg-4">
-          <div class="feature text-center">
-            <img src="images/icons/icon_dev_ready.png" alt="Dev Ready" style="width: 50%" />
-            <h3>Dev-Ready & Documented</h3>
-            <p>
-              Dockerized deployment, clean code, and full documentation make Georama ideal for teams building production tools.
-            </p>
+        <div class="col-lg-6">
+          <div class="hero-visual card border-0 shadow-sm ms-lg-auto">
+            <div class="ratio ratio-4x3">
+              {{ with $home.hero.image }}
+              <img class="img-fluid" src="{{ . | relURL }}" alt="Deployment overview">
+              {{ else }}
+              <div class="d-flex align-items-center justify-content-center bg-light text-muted">Visual</div>
+              {{ end }}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-
-
-  <section class="section-spacing text-center " >
-    <hr color="#e0e0e0" style="width: 75%;">
-    <h2>Manage smarter. Publish faster. Use Georama.</h2>
-    <hr color="#e0e0e0" style="width: 75%;">
-  </section>
- 
-
-
-  <section class="section-spacing text-center section-gradient" >
-  </section>
-
-  <!-- Read the Docs Section -->
-  <section class="bg-light text-center" id="docs">
-    <div class="container text-center">
-      <h3 class="fw-bold mb-3">📘 Read the Docs</h3>
-      <p class="mb-4">Dive into the full documentation to get started with setup, API, and module structure.</p>
-      <a href="https://docs.georama.io" class="btn btn-primary" target="_blank">View Documentation</a>
+  {{ with $home.functionality }}
+  <section class="section-block py-5">
+    <div class="container">
+      <h2 class="text-center section-heading mb-5">{{ .title }}</h2>
+      <div class="row g-4 g-lg-5 justify-content-center">
+        {{ range .items }}
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card h-100 text-center p-4">
+            <div class="icon-circle mb-3">
+              <i class="{{ .icon }} text-brand-emphasis"></i>
+            </div>
+            <h3 class="h5 fw-semibold">{{ .title }}</h3>
+            <p class="text-muted small mb-0">{{ .description }}</p>
+          </div>
+        </div>
+        {{ end }}
+      </div>
     </div>
   </section>
+  {{ end }}
 
-  <section class="section-spacing text-center section-gradient-out" >
+  {{ with $home.expectations }}
+  <section class="section-block py-5">
+    <div class="container">
+      <h2 class="text-center section-heading mb-5">{{ .title }}</h2>
+      <div class="row g-4 g-lg-5 justify-content-center">
+        {{ range .items }}
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card h-100 text-center p-4">
+            <div class="icon-circle mb-3">
+              <i class="{{ .icon }} text-brand-emphasis"></i>
+            </div>
+            <h3 class="h5 fw-semibold">{{ .title }}</h3>
+            <p class="text-muted small mb-0">{{ .description }}</p>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
   </section>
+  {{ end }}
 
+  {{ with $home.cta }}
+  <section id="resources" class="section-block py-5">
+    <div class="container">
+      <div class="cta-panel border rounded-4 p-4 p-lg-5 shadow-sm bg-white">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-4 text-center text-lg-start">
+            <h3 class="fw-bold mb-1">{{ .title }}</h3>
+            <p class="text-muted mb-0">{{ .subtitle }}</p>
+          </div>
+          <div class="col-lg-8">
+            <div class="d-flex flex-column flex-md-row justify-content-md-end gap-3">
+              {{ range .buttons }}
+              {{ $style := default "primary" .style }}
+              {{ if eq $style "outline" }}
+              <a class="btn btn-outline-secondary px-4" href="{{ .url }}">{{ .text }}</a>
+              {{ else if eq $style "ghost" }}
+              <a class="btn btn-link text-decoration-none px-0 text-brand fw-semibold" href="{{ .url }}">{{ .text }}</a>
+              {{ else }}
+              <a class="btn btn-primary px-4" href="{{ .url }}">{{ .text }}</a>
+              {{ end }}
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
 
+  {{ with $home.extensibility }}
+  <section id="demo" class="section-extensibility position-relative text-white py-5">
+    <div class="extensibility-wave top-wave"></div>
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="extensibility-icon mb-3">
+            <i class="bi bi-arrow-clockwise"></i>
+          </div>
+          <h2 class="fw-bold mb-3">{{ .title }}</h2>
+          <p class="lead mb-4">{{ .description }}</p>
+          {{ with .button }}
+          <a class="btn btn-light px-4" href="{{ .url }}">{{ .text }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="extensibility-wave bottom-wave"></div>
+  </section>
+  {{ end }}
 
-</body>
-
-</html>
+  {{ with $home.footer }}
+  <section id="contact" class="section-contour text-center py-5">
+    <div class="container">
+      <p class="mb-0 text-muted small">{{ .note }}</p>
+    </div>
+  </section>
+  {{ end }}
+</main>
 
 {{ end }}

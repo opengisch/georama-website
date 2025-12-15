@@ -1,0 +1,49 @@
+{{/* 
+  Customize Section Partial
+  
+  Usage: {{ partial "assistance/customize-section.html" (dict "customize" .Site.Data.assistance.customize "context" .) }}
+  
+  Expects:
+  - customize: customize object with title, description, icon, cta_text, cta_url
+  - context: page context for accessing site variables
+*/}}
+
+{{- $customize := .customize -}}
+{{- $context := .context -}}
+
+<section class="py-5" aria-labelledby="customize-heading">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card shadow-sm border-0 rounded-0">
+          <div class="card-body text-center py-5 px-4">
+            {{- if $customize.icon -}}
+              {{- partial "asset-image.html" (dict 
+                "src" $customize.icon
+                "alt" $customize.title
+                "class" "mb-4"
+                "style" "width: 60px; height: auto;"
+                "loading" "lazy") -}}
+            {{- end -}}
+            
+            <h2 id="customize-heading" class="card-title h3 mb-4">{{ $customize.title }}</h2>
+            
+            <div class="card-text mb-4">
+              {{ $customize.description | markdownify }}
+            </div>
+            
+            {{- if $customize.cta_text -}}
+              <a 
+                class="green-link text-decoration-none fw-normal"
+                href="{{ $customize.cta_url }}"
+                {{- if $customize.cta_external }} target="_blank" rel="noopener"{{ end -}}
+              >
+                {{ $customize.cta_text }}
+              </a>
+            {{- end -}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

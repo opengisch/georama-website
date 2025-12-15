@@ -1,0 +1,38 @@
+// Brand palette
+$primary:       #82b440;
+$secondary:     #6c757d;
+$success:       #198754;
+$info:          #0dcaf0;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$light:         #f8f9fa;
+$dark:          #212529;
+
+// Typography
+$font-family-sans-serif: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+// Body styles
+$body-bg: #fff;
+$body-color: #212529;
+
+// Button customization
+$btn-border-width: 2px;
+$btn-font-weight: 500;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+                 border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+// Container max widths (must be ascending)
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+// CSS variables for branding
+:root {
+  --qfield-color: #82b440;
+  --qfield-color-rgb: 130, 180, 64;
+  --qfieldcloud-color: #4a6fae;
+}

@@ -1,0 +1,48 @@
+<!-- FAQPage Schema.org Type -->
+<!-- https://schema.org/FAQPage -->
+
+<!-- Revision based on Google guide https://developers.google.com/search/docs/appearance/structured-data/faqpage -->
+
+{{ with .Params.faq }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  {{- /* Handle both object format with title/items and simple array format */ -}}
+  {{- if reflect.IsSlice . -}}
+    {{- /* Simple array format: faq: [{ q: "...", a: "..." }] */ -}}
+    "mainEntity": [
+    {{ range $i, $item := . -}}
+      {{- if $i }}, {{ end }}
+      {
+        "@type": "Question",
+        "name": {{ $item.q | jsonify }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ replace $item.a "\n" "<br>" | jsonify }}
+        }
+      }
+    {{- end }}
+    ]
+  {{- else -}}
+    {{- /* Object format: faq: { title: "...", items: [...] } */ -}}
+    {{ with .title -}}
+    "name": {{ . | jsonify }},
+    {{ end -}}
+    "mainEntity": [
+    {{ range $i, $item := .items -}}
+      {{- if $i }}, {{ end }}
+      {
+        "@type": "Question",
+        "name": {{ $item.question | jsonify }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ replace $item.answer "\n" "<br>" | jsonify }}
+        }
+      }
+    {{- end }}
+    ]
+  {{- end }}
+}
+</script>
+{{ end }}

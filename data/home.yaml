@@ -1,0 +1,60 @@
+hero:
+  eyebrow: "Scalable"
+  title: "Web publishing for QGIS"
+  description: "Georama streamlines the process of serving your QGIS project as standard OGC services."
+  visual_label: "[VISUAL]"
+  visual_text: "A small representation of what's going on behind the scenes of your deployment."
+  cta:
+    text: "Stay up to date!"
+    url: "#contact"
+  image: "images/hero-visual.svg"
+
+functionality:
+  title: "User-friendly functionalities"
+  items:
+    - icon: "bi-layers"
+      title: "Native QGIS Support"
+      description: "Configure output once using QGIS defaults for projects, styles, and layers."
+    - icon: "bi-diagram-3"
+      title: "OGC Services"
+      description: "Serve your data as standard OGC services like WMTS, WFS3 and more."
+    - icon: "bi-shield-check"
+      title: "Permission Control"
+      description: "Control access granularity with the same permissions you use inside QGIS."
+
+expectations:
+  title: "What to expect?"
+  items:
+    - icon: "bi-cpu"
+      title: "Modern stack"
+      description: "Built with a modern architecture that keeps your data flowing."
+    - icon: "bi-battery-charging"
+      title: "Batteries included"
+      description: "Standard setup covers best practices from deployment to monitoring."
+    - icon: "bi-lightning-charge"
+      title: "Blazing fast"
+      description: "Optimized for real-world performance without sacrificing reliability."
+
+cta:
+  title: "Get started!"
+  subtitle: "Ready to deploy? Start with our quickstart guide."
+  buttons:
+    - text: "Quickstart tutorial"
+      style: "primary"
+      url: "#resources"
+    - text: "Visit our demo"
+      style: "outline"
+      url: "#demo"
+    - text: "API reference"
+      style: "ghost"
+      url: "#resources"
+
+extensibility:
+  title: "Built for extensibility"
+  description: "Whether you're building a custom geodata pipeline or integrating with third parties, Georama is designed to plug into your ecosystem. Modules for modular deployments designed to cooperate nicely with QGIS."
+  button:
+    text: "Get in touch!"
+    url: "#contact"
+
+footer:
+  note: "about opengis - contact - etc."

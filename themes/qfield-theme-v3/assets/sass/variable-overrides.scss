@@ -1,0 +1,39 @@
+// Default variable overrides
+
+// scss-docs-start theme-color-variables
+// QField brand colors
+$primary:       #80cc28;  // QField green
+$secondary:     #6c757d;
+$success:       #198754;
+$info:          #0dcaf0;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$light:         #f8f9fa;
+$dark:          #212529;
+// scss-docs-end theme-color-variables
+
+// Body styles
+$body-bg: #fff;
+$body-color: #212529;
+
+// Button customization
+$btn-border-width: 2px;
+$btn-font-weight: 500;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
+                 border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+// Container max widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1140px
+);
+
+// Custom CSS variables for QField branding
+:root {
+  --qfield-color: #80cc28;
+  --qfield-color-rgb: 128, 204, 40;
+  --qfieldcloud-color: #4a6fae;
+}
