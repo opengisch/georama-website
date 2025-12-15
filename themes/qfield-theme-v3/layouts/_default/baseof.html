@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ .Language.LanguageCode | default site.Language.LanguageCode }}" data-bs-theme="light" data-theme-default="{{ site.Params.defaultTheme | default "light" }}"> <!-- default, will be updated by JS -->
+{{ partial "head/head.html" . }}
+{{ if eq .Kind "home" -}}
+    {{ .Scratch.Set "class" "home" -}}
+{{ else if eq .Kind "404" -}}
+    {{ .Scratch.Set "class" "error404" -}}
+{{ else if eq .Kind "page" -}}
+    {{ .Scratch.Set "class" .Type -}}
+    {{ .Scratch.Add "class" " single" -}}
+{{ else -}}
+    {{ .Scratch.Set "class" .Type -}}
+    {{ .Scratch.Add "class" " list" -}}
+{{ end -}}
+<body class="{{ .Scratch.Get `class` }} d-flex flex-column min-vh-100">
+    {{- partial "header/header.html" . -}}
+    <div id="content">
+        {{- block "main" . }}{{- end }}
+    </div>
+    {{ partial "footer/footer.html" . }}
+    {{ partial "footer/script-footer.html" . }}
+</body>
+</html>

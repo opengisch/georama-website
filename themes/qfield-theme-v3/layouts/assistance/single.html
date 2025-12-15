@@ -1,0 +1,35 @@
+{{- define "main" -}}
+
+<div class="container py-5">
+  <h1>{{ .Title }}</h1>
+  <p>This is a test to see if the assistance page is working.</p>
+  
+  <h2>Debug Information:</h2>
+  <ul>
+    <li>Page Type: {{ .Type }}</li>
+    <li>Page Kind: {{ .Kind }}</li>
+    <li>Layout: {{ .Layout }}</li>
+    <li>Section: {{ .Section }}</li>
+    <li>URL: {{ .RelPermalink }}</li>
+  </ul>
+  
+  <h3>Data Check:</h3>
+  {{- $data := site.Data.assistance -}}
+  {{- if $data -}}
+    <p class="alert alert-success">✅ Assistance data loaded successfully!</p>
+    <p>Hero title: {{ $data.hero.title }}</p>
+    <p>Services count: {{ len $data.services }}</p>
+  {{- else -}}
+    <p class="alert alert-danger">❌ No assistance data found!</p>
+    <p>Available data files:</p>
+    <ul>
+      {{- range $key, $value := site.Data -}}
+        <li>{{ $key }}</li>
+      {{- end -}}
+    </ul>
+  {{- end -}}
+  
+  {{ .Content }}
+</div>
+
+{{- end -}}

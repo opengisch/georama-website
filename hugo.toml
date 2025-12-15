@@ -1,4 +1,50 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'georama'
-theme = 'georama-theme'
+baseURL = '/'
+languageCode = 'en'
+title = 'Georama'
+theme = 'qfield-theme-v3'
+timeZone = 'UTC'
+enableRobotsTXT = true
+defaultContentLanguage = 'en'
+
+copyright = '© 2025'
+
+[params]
+  description = 'Scalable web publishing for QGIS.'
+  mainMenuLogo = 'images/logo-georama.svg'
+  showTitle = false
+  enableDarkMode = false
+  languageISO = 'EN'
+  cta_text = 'Get in touch'
+  cta_link = '#contact'
+  images = ['images/hero-visual.svg']
+
+[params.options]
+  bootStrapJs = true
+  breadCrumb = false
+  listCategoryFilter = false
+  listTagFilter = false
+
+[[menu.main]]
+  name = 'Demo'
+  url = '#demo'
+  weight = 10
+
+[[menu.main]]
+  name = 'Resources'
+  url = '#resources'
+  weight = 20
+
+[[menu.main]]
+  name = 'Contact'
+  url = '#contact'
+  weight = 30
+
+[[menu.footer]]
+  name = 'About'
+  url = '#about'
+  weight = 10
+
+[[menu.footer]]
+  name = 'Contact'
+  url = '#contact'
+  weight = 20
