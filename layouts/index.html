@@ -8,14 +8,34 @@
         <div class="col-lg-6">
           {{ with $home.hero }}
           <p class="text-uppercase fw-semibold text-brand tracking-wide small mb-2">{{ .eyebrow }}</p>
-          <h1 class="hero-title fw-bold mb-3">{{ .title }}</h1>
-          <p class="lead text-secondary mb-4">{{ .description }}</p>
+          {{- $title := .title -}}
+          {{- $titleMain := "" -}}
+          {{- $titleSuffix := "" -}}
+          {{- if reflect.IsMap $title -}}
+          {{- $titleMain = (index $title "main" | default "") -}}
+          {{- $titleSuffix = (index $title "suffix" | default "") -}}
+          {{- else -}}
+          {{- $titleString := $title | default "" -}}
+          {{- $parts := split $titleString " FOR " -}}
+          {{- if ge (len $parts) 2 -}}
+          {{- $titleMain = index $parts 0 -}}
+          {{- $titleSuffix = printf "FOR %s" (delimit (after 1 $parts) " FOR ") -}}
+          {{- else -}}
+          {{- $titleMain = $titleString -}}
+          {{- end -}}
+          {{- end -}}
+          <h1 class="hero-title mb-3">
+            <span class="fw-semibold">{{ $titleMain }}</span>{{ if $titleSuffix }} <span class="fw-light">{{ $titleSuffix }}</span>{{ end }}
+          </h1>
+          <div class="hero-description lead text-secondary mb-4">
+            {{ .description | markdownify }}
+          </div>
           <div class="d-flex align-items-start gap-3 mb-4">
             <span class="badge rounded-pill text-uppercase text-brand-emphasis bg-brand-soft px-3 py-2">{{ .visual_label }}</span>
             <p class="mb-0 small text-muted">{{ .visual_text }}</p>
           </div>
           {{ with .cta }}
-          <a class="btn btn-primary btn-lg shadow-sm" href="{{ .url }}">{{ .text }}</a>
+          <a class="btn btn-cta btn-lg" href="{{ .url }}">{{ .text }}</a>
           {{ end }}
           {{ end }}
         </div>
@@ -43,7 +63,12 @@
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="feature-card h-100 text-center p-4">
             <div class="icon-circle mb-3">
-              <i class="{{ .icon }} text-brand-emphasis"></i>
+              {{- $icon := .icon | default "" -}}
+              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
+              <img src="{{ $icon | relURL }}" alt="" aria-hidden="true" loading="lazy">
+              {{- else if $icon -}}
+              <i class="{{ $icon }} text-brand-emphasis"></i>
+              {{- end -}}
             </div>
             <h3 class="h5 fw-semibold">{{ .title }}</h3>
             <p class="text-muted small mb-0">{{ .description }}</p>
@@ -64,7 +89,12 @@
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="feature-card h-100 text-center p-4">
             <div class="icon-circle mb-3">
-              <i class="{{ .icon }} text-brand-emphasis"></i>
+              {{- $icon := .icon | default "" -}}
+              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
+              <img src="{{ $icon | relURL }}" alt="" aria-hidden="true" loading="lazy">
+              {{- else if $icon -}}
+              <i class="{{ $icon }} text-brand-emphasis"></i>
+              {{- end -}}
             </div>
             <h3 class="h5 fw-semibold">{{ .title }}</h3>
             <p class="text-muted small mb-0">{{ .description }}</p>
@@ -79,57 +109,48 @@
   {{ with $home.cta }}
   <section id="resources" class="section-block py-5">
     <div class="container">
-      <div class="cta-panel border rounded-4 p-4 p-lg-5 shadow-sm bg-white">
-        <div class="row align-items-center g-3">
-          <div class="col-lg-4 text-center text-lg-start">
-            <h3 class="fw-bold mb-1">{{ .title }}</h3>
-            <p class="text-muted mb-0">{{ .subtitle }}</p>
-          </div>
-          <div class="col-lg-8">
-            <div class="d-flex flex-column flex-md-row justify-content-md-end gap-3">
-              {{ range .buttons }}
-              {{ $style := default "primary" .style }}
-              {{ if eq $style "outline" }}
-              <a class="btn btn-outline-secondary px-4" href="{{ .url }}">{{ .text }}</a>
-              {{ else if eq $style "ghost" }}
-              <a class="btn btn-link text-decoration-none px-0 text-brand fw-semibold" href="{{ .url }}">{{ .text }}</a>
-              {{ else }}
-              <a class="btn btn-primary px-4" href="{{ .url }}">{{ .text }}</a>
-              {{ end }}
-              {{ end }}
-            </div>
-          </div>
+      <div class="cta-panel cta-panel--dashed rounded-4 p-4 p-lg-5 shadow-sm">
+        <div class="text-center">
+          <h3 class="fw-bold mb-1">{{ .title }}</h3>
+          <p class="text-muted mb-0">{{ .subtitle }}</p>
         </div>
-      </div>
-    </div>
-  </section>
-  {{ end }}
-
-  {{ with $home.extensibility }}
-  <section id="demo" class="section-extensibility position-relative text-white py-5">
-    <div class="extensibility-wave top-wave"></div>
-    <div class="container position-relative">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <div class="extensibility-icon mb-3">
-            <i class="bi bi-arrow-clockwise"></i>
-          </div>
-          <h2 class="fw-bold mb-3">{{ .title }}</h2>
-          <p class="lead mb-4">{{ .description }}</p>
-          {{ with .button }}
-          <a class="btn btn-light px-4" href="{{ .url }}">{{ .text }}</a>
+        <div class="cta-buttons d-flex flex-column flex-sm-row justify-content-center align-items-stretch gap-4 mt-4">
+          {{ range .buttons }}
+          <a class="btn btn-cta btn-cta--gold" href="{{ .url }}">{{ .text }}</a>
           {{ end }}
         </div>
       </div>
     </div>
-    <div class="extensibility-wave bottom-wave"></div>
+  </section>
+  {{ end }}
+
+  <section class="section-path-top" aria-hidden="true">
+    <img src="{{ "images/path_top.png" | relURL }}" alt="">
+  </section>
+
+  {{ with $home.extensibility }}
+  <section id="demo" class="section-extensibility position-relative text-white py-5">
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="extensibility-icon mb-3">
+            <img src="{{ "images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
+          </div>
+          <h2 class="fw-bold mb-3">{{ .title }}</h2>
+          <p class="lead mb-4">{{ .description }}</p>
+          {{ with .button }}
+          <a class="btn btn-cta" href="{{ .url }}">{{ .text }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
   </section>
   {{ end }}
 
   {{ with $home.footer }}
-  <section id="contact" class="section-contour text-center py-5">
+  <section id="contact" class="section-contour text-center">
     <div class="container">
-      <p class="mb-0 text-muted small">{{ .note }}</p>
+      <p class="lead mb-0 text-muted">{{ .note }}</p>
     </div>
   </section>
   {{ end }}

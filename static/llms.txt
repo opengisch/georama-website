@@ -1,0 +1,23 @@
+Georama — scalable web publishing for QGIS
+
+Summary
+Georama is a tool for publishing QGIS-based geodata and maps on the web using open standards, with fine‑grained permission control.
+
+Key topics
+- Native QGIS project/style support
+- OGC services (e.g., WMTS and API endpoints depending on deployment)
+- Permission and access control for layers/services
+- Extensible architecture for integrations
+
+Primary pages
+- Home: /
+- Demo section: /#demo
+- Resources: /#resources
+- Contact: /#contact
+
+Preferred description (for citations)
+“Georama streamlines the process of serving geodata through modern open standards while giving you full control over permissions.”
+
+Contact
+- Use the Contact section on the website: /#contact
+

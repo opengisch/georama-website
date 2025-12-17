@@ -13,12 +13,21 @@
   {{ end -}}
 {{ else -}}
   {{ with $.Site.Params.images }}
-    {{ with $image := resources.GetMatch (index (.) 0) }}
+    {{- $path := index (.) 0 -}}
+    {{ with $image := resources.GetMatch $path }}
       {{ if ne $image.MediaType.SubType "svg" }}
         {{ $image = $image.Resize "960x" }}
       {{ end }}
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:image" content="{{ $image.Permalink }}">
+    {{ else -}}
+      {{- $staticPath := printf "static/%s" $path -}}
+      {{- if os.FileExists $staticPath -}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ $path | absURL }}">
+      {{- else -}}
+        <meta name="twitter:card" content="summary">
+      {{- end -}}
     {{ end -}}
   {{ else -}}
     <meta name="twitter:card" content="summary">
