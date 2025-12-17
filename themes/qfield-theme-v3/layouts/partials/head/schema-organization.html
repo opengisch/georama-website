@@ -5,46 +5,64 @@
 <!-- Revision based on Google guide https://developers.google.com/search/docs/appearance/structured-data/organization -->
 
 {{ with .Site.Params.organization }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": {{ .name }},
-  {{ with .legalName -}}
-  "legalName": {{ . }},
-  {{ end -}}
-  {{ with .description -}}
-  "description": {{ . }},
-  {{ end -}}
-  {{ with .logo -}}
-  {{- with resources.GetMatch . -}}
-  "logo": {{ .Permalink }},
-  {{ end -}}
-  {{ end -}}
-  {{ with .url -}}
-  "url": {{ . }},
-  {{ end -}}
-  {{ with .taxID -}}
-  "taxID": {{ . }},
-  {{ end -}}
-  {{ with .address -}}
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "{{ .streetAddress }}",
-    "addressLocality": "{{ .locality }}",
-    "addressRegion": "{{ .region }}",
-    "postalCode": "{{ .postalCode }}",
-    "addressCountry": "{{ .country }}"
-  },
-  {{ end -}}
-  {{ with .contactPoint -}}
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "{{ .email }}",
-    "telephone": "{{ .telephone }}",
-    "url": "{{ .url }}"
-  }
-  {{- end }}
-}
-</script>
+{{- $data := dict
+  "@context" "https://schema.org"
+  "@type" "Organization"
+  "name" (site.Title | default "Organization")
+  "url" site.BaseURL
+-}}
+
+{{- with .legalName -}}
+  {{- $data = merge $data (dict "legalName" .) -}}
+{{- end -}}
+
+{{- with .description -}}
+  {{- $data = merge $data (dict "description" .) -}}
+{{- else -}}
+  {{- with site.Params.description -}}
+    {{- $data = merge $data (dict "description" .) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with .logo -}}
+  {{- $path := . -}}
+  {{- $staticPath := printf "static/%s" $path -}}
+  {{- if os.FileExists $staticPath -}}
+    {{- $data = merge $data (dict "logo" ($path | absURL)) -}}
+  {{- end -}}
+{{- else -}}
+  {{- with site.Params.mainMenuLogo -}}
+    {{- $path := . -}}
+    {{- $staticPath := printf "static/%s" $path -}}
+    {{- if os.FileExists $staticPath -}}
+      {{- $data = merge $data (dict "logo" ($path | absURL)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with .sameAs -}}
+  {{- $data = merge $data (dict "sameAs" .) -}}
+{{- end -}}
+
+{{- with .contactPoint -}}
+  {{- $contact := dict "@type" "ContactPoint" -}}
+  {{- with .email -}}{{- $contact = merge $contact (dict "email" .) -}}{{- end -}}
+  {{- with .telephone -}}{{- $contact = merge $contact (dict "telephone" .) -}}{{- end -}}
+  {{- with .url -}}{{- $contact = merge $contact (dict "url" .) -}}{{- end -}}
+  {{- $data = merge $data (dict "contactPoint" $contact) -}}
+{{- end -}}
+
+{{- with .address -}}
+  {{- $addr := dict
+    "@type" "PostalAddress"
+    "streetAddress" (.streetAddress | default "")
+    "addressLocality" (.locality | default "")
+    "addressRegion" (.region | default "")
+    "postalCode" (.postalCode | default "")
+    "addressCountry" (.country | default "")
+  -}}
+  {{- $data = merge $data (dict "address" $addr) -}}
+{{- end -}}
+
+<script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}

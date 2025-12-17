@@ -4,20 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ block "head/content-security-policy" . }}{{ partial "head/content-security-policy.html" . }}{{ end }}
     {{ if eq .Site.Params.enableDarkMode true }}
-    <script>
-      (function() {
-        try {
-          var defaultTheme = document.documentElement.getAttribute('data-theme-default') || '{{ .Site.Params.defaultTheme | default "light" }}';
-          var stored = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var next = stored || (defaultTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : defaultTheme);
-          document.documentElement.setAttribute('data-bs-theme', next === 'dark' ? 'dark' : 'light');
-        } catch (e) {
-          document.documentElement.setAttribute('data-bs-theme', 'light');
-        }
-      })();
-    </script>
+    {{ $init := resources.Get "js/dark-mode-init.js" | minify | fingerprint "sha512" -}}
+    <script src="{{ $init.RelPermalink }}" integrity="{{ $init.Data.Integrity }}" crossorigin="anonymous"></script>
     {{ end }}
+
+    {{ with .Site.Params.themeColorLight -}}
+    <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: light)">
+    {{ end -}}
+    {{ with .Site.Params.themeColorDark -}}
+    <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: dark)">
+    {{ end -}}
     {{ block "head/stylesheet" . }}{{ partial "head/stylesheet.html" . }}{{ end }}
     {{ block "head/seo" . }}{{ partial "head/seo.html" . }}{{ end }}
     {{ block "head/favicons" . }}{{ partial "head/favicons.html" . }}{{ end }}

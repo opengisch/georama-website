@@ -24,7 +24,9 @@
   {{ partial "footer/facebook-pixel-light.html" . }}
 {{end}}
 
+{{ if fileExists "static/vendor/fontawesome/js/all.min.js" -}}
 <script src="{{ "vendor/fontawesome/js/all.min.js" | relURL }}" defer></script>
+{{ end -}}
 
 {{ if eq .Site.Params.enableDarkMode true -}}
   {{ $sync := resources.Get "js/dark-mode.js" | resources.Minify | resources.Fingerprint -}}

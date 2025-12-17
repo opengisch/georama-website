@@ -1,0 +1,16 @@
+{
+  "name": "georama-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "optimize:images:write": "node scripts/optimize-images.mjs --write",
+    "optimize:images:webp": "node scripts/optimize-images.mjs --write --webp"
+  },
+  "devDependencies": {
+    "fast-glob": "^3.3.3",
+    "sharp": "^0.34.4",
+    "svgo": "^4.0.0"
+  }
+}
+

@@ -5,31 +5,22 @@
 <!-- Revision based on Google guide https://developers.google.com/search/docs/appearance/site-names#how-to-add-structured-data -->
 
 {{ with .Site.Params.webSite }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": {{ .name }},
-  {{ with .description -}}
-  "description": {{ . }},
-  {{ end -}}
-  {{ with .image -}}
-  {{- with $image := resources.GetMatch . -}}
-  {{- if ne $image.MediaType.SubType "svg" -}}
-    {{- $image = $image.Resize "960x" -}}
+{{- $data := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" (site.Title | default "Website")
+  "url" site.BaseURL
+  "description" (site.Params.description | default "")
+  "inLanguage" (site.Language.LanguageCode | default site.Language.Lang)
+-}}
+
+{{- with .image -}}
+  {{- $path := . -}}
+  {{- $staticPath := printf "static/%s" $path -}}
+  {{- if os.FileExists $staticPath -}}
+    {{- $data = merge $data (dict "image" ($path | absURL)) -}}
   {{- end -}}
-  "image": {{ $image.Permalink }},
-  {{ end -}}
-  {{ end -}}
-  {{ with .copyrightHolder -}}
-  "copyrightHolder": {
-    "@type": "Organization",
-    "name": "{{ .name }}"
-  },
-  {{- end }}
-  {{ with .url -}}
-  "url": {{ . }}
-  {{ end -}}
-}
-</script>
+{{- end -}}
+
+<script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}

@@ -39,6 +39,11 @@ function initializeApp() {
   // Enhanced Sticky Navbar
   const navbar = document.querySelector('.navbar.sticky-top')
   if (navbar) {
+    const updateNavbarOffset = () => {
+      const height = Math.ceil(navbar.getBoundingClientRect().height)
+      document.documentElement.style.setProperty('--navbar-offset', `${height}px`)
+    }
+
     let lastScrollY = window.scrollY
     let isScrolled = false
 
@@ -56,6 +61,10 @@ function initializeApp() {
 
       lastScrollY = currentScrollY
     }
+
+    handleScroll()
+    updateNavbarOffset()
+    window.addEventListener('resize', updateNavbarOffset, { passive: true })
 
     // Throttle scroll events for better performance
     let ticking = false
@@ -609,4 +618,3 @@ if (typeof window !== 'undefined') {
 // Start initialization
 tryInitialization()
 initializeDonationPage()
-

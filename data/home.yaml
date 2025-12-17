@@ -1,7 +1,9 @@
 hero:
-  eyebrow: "Scalable"
-  title: "Web publishing for QGIS"
-  description: "Georama streamlines the process of serving your QGIS project as standard OGC services."
+  eyebrow: ""
+  title:
+    main: "SCALABLE WEB PUBLISHING"
+    suffix: "FOR QGIS"
+  description: "GEORAMA streamlines the process of serving geodata through modern **open standards** while giving you full control over **permissions.**"
   visual_label: "[VISUAL]"
   visual_text: "A small representation of what's going on behind the scenes of your deployment."
   cta:
@@ -12,26 +14,26 @@ hero:
 functionality:
   title: "User-friendly functionalities"
   items:
-    - icon: "bi-layers"
+    - icon: "images/icon-qgis.svg"
       title: "Native QGIS Support"
       description: "Configure output once using QGIS defaults for projects, styles, and layers."
-    - icon: "bi-diagram-3"
+    - icon: "images/icon-services.svg"
       title: "OGC Services"
       description: "Serve your data as standard OGC services like WMTS, WFS3 and more."
-    - icon: "bi-shield-check"
+    - icon: "images/icon-permission.svg"
       title: "Permission Control"
       description: "Control access granularity with the same permissions you use inside QGIS."
 
 expectations:
   title: "What to expect?"
   items:
-    - icon: "bi-cpu"
+    - icon: "images/icon-stack.svg"
       title: "Modern stack"
       description: "Built with a modern architecture that keeps your data flowing."
-    - icon: "bi-battery-charging"
+    - icon: "images/icon-batteries.svg"
       title: "Batteries included"
       description: "Standard setup covers best practices from deployment to monitoring."
-    - icon: "bi-lightning-charge"
+    - icon: "images/icon-fast.svg"
       title: "Blazing fast"
       description: "Optimized for real-world performance without sacrificing reliability."
 
