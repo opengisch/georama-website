@@ -25,17 +25,22 @@
           {{- end -}}
           {{- end -}}
           <h1 class="hero-title mb-3">
-            <span class="fw-semibold">{{ $titleMain }}</span>{{ if $titleSuffix }} <span class="fw-light">{{ $titleSuffix }}</span>{{ end }}
+            <span class="fw-semibold">{{ $titleMain }}</span>{{ if $titleSuffix }} <span class="fw-light">{{
+              $titleSuffix }}</span>{{ end }}
           </h1>
           <div class="hero-description lead text-secondary mb-4">
             {{ .description | markdownify }}
           </div>
           <div class="d-flex align-items-start gap-3 mb-4">
-            <span class="badge rounded-pill text-uppercase text-brand-emphasis bg-brand-soft px-3 py-2">{{ .visual_label }}</span>
+            <span class="badge rounded-pill text-uppercase text-brand-emphasis bg-brand-soft px-3 py-2">{{ .visual_label
+              }}</span>
             <p class="mb-0 small text-muted">{{ .visual_text }}</p>
           </div>
           {{ with .cta }}
-          <a class="btn btn-cta btn-lg" href="{{ .url }}">{{ .text }}</a>
+          <a class="btn btn-cta btn-lg" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank" }}
+            rel="noopener noreferrer" {{ end }}{{ end }}>
+            {{ .text }}
+          </a>
           {{ end }}
           {{ end }}
         </div>
@@ -64,7 +69,8 @@
           <div class="feature-card h-100 text-center p-4">
             <div class="icon-circle mb-3">
               {{- $icon := .icon | default "" -}}
-              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
+              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon
+              ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
               <img src="{{ $icon | relURL }}" alt="" aria-hidden="true" loading="lazy">
               {{- else if $icon -}}
               <i class="{{ $icon }} text-brand-emphasis"></i>
@@ -90,7 +96,8 @@
           <div class="feature-card h-100 text-center p-4">
             <div class="icon-circle mb-3">
               {{- $icon := .icon | default "" -}}
-              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
+              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon
+              ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
               <img src="{{ $icon | relURL }}" alt="" aria-hidden="true" loading="lazy">
               {{- else if $icon -}}
               <i class="{{ $icon }} text-brand-emphasis"></i>
@@ -116,7 +123,10 @@
         </div>
         <div class="cta-buttons d-flex flex-column flex-sm-row justify-content-center align-items-stretch gap-4 mt-4">
           {{ range .buttons }}
-          <a class="btn btn-cta btn-cta--gold" href="{{ .url }}">{{ .text }}</a>
+          <a class="btn btn-cta btn-cta--gold" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank"
+            }} rel="noopener noreferrer" {{ end }}{{ end }}>
+            {{ .text }}
+          </a>
           {{ end }}
         </div>
       </div>
@@ -125,7 +135,7 @@
   {{ end }}
 
   <section class="section-path-top" aria-hidden="true">
-    <img src="{{ "images/path_top.png" | relURL }}" alt="">
+    <img src="{{ " images/path_top.png" | relURL }}" alt="">
   </section>
 
   {{ with $home.extensibility }}
@@ -134,12 +144,15 @@
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
           <div class="extensibility-icon mb-3">
-            <img src="{{ "images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
+            <img src="{{ " images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
           </div>
           <h2 id="contact" class="fw-bold mb-3">{{ .title }}</h2>
           <p class="lead mb-4">{{ .description }}</p>
           {{ with .button }}
-          <a class="btn btn-cta" href="{{ .url }}">{{ .text }}</a>
+          <a class="btn btn-cta" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank" }}
+            rel="noopener noreferrer" {{ end }}{{ end }}>
+            {{ .text }}
+          </a>
           {{ end }}
         </div>
       </div>

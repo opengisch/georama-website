@@ -44,12 +44,15 @@ cta:
     - text: "Quickstart tutorial"
       style: "primary"
       url: "https://docs.georama.io/quick_start/"
+      target: _blank
     - text: "Visit our demo"
       style: "outline"
       url: "https://demo.georama.io/"
+      target: _blank
     - text: "API reference"
       style: "ghost"
       url: "https://docs.georama.io/api_references/overview/"
+      target: _blank
 
 extensibility:
   title: "Built for extensibility"
