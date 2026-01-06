@@ -136,7 +136,7 @@
           <div class="extensibility-icon mb-3">
             <img src="{{ "images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
           </div>
-          <h2 class="fw-bold mb-3">{{ .title }}</h2>
+          <h2 id="contact" class="fw-bold mb-3">{{ .title }}</h2>
           <p class="lead mb-4">{{ .description }}</p>
           {{ with .button }}
           <a class="btn btn-cta" href="{{ .url }}">{{ .text }}</a>
@@ -147,13 +147,6 @@
   </section>
   {{ end }}
 
-  {{ with $home.footer }}
-  <section id="contact" class="section-contour text-center">
-    <div class="container">
-      <p class="lead mb-0 text-muted">{{ .note }}</p>
-    </div>
-  </section>
-  {{ end }}
 </main>
 
 {{ end }}

@@ -12744,7 +12744,7 @@ body {
   opacity: 0.7;
 }
 
-#contact.section-contour {
+#about.section-contour {
   aspect-ratio: 2400 / 1457;
   display: flex;
   align-items: center;
@@ -12757,8 +12757,14 @@ body {
   background: #262626 url("/images/path_bottom_dark.png") center/100% 100% no-repeat;
 }
 
-#contact.section-contour::before {
+#about.section-contour::before {
   content: none;
+}
+
+#about div.container {
+  border-radius: 15px;
+  background: #d3d4d055;
+  max-width: 50%;
 }
 
 #resources.section-block {
@@ -12792,7 +12798,6 @@ body {
 
 footer {
   background: #ffffff;
-  border-top: 1px solid var(--brand-line);
 }
 
 [data-bs-theme="dark"] footer {

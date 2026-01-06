@@ -1,12 +1,67 @@
-<footer class="site-footer py-4 mt-auto">
-  <div class="container text-center">
-    {{ with .Site.Menus.footer }}
-    <div class="d-flex justify-content-center gap-3 mb-2">
-      {{ range . }}
-      <a class="small text-muted text-decoration-none" href="{{ .URL }}">{{ .Name }}</a>
-      {{ end }}
+<footer>
+  <section id="about" class="section-contour text-center">
+        <div class="container">
+          <div class="page-header">
+            <h1>About Georama</h1>
+          </div>
+          <div class="row-fluid">
+            <div class="span4">
+              <p>
+                Georama is an open-source web publishing platform for the QGIS
+                ecosystem, designed to streamline the deployment and serving of
+                geospatial data through modern, standards-based web services. It
+                enables organisations to publish, manage, and scale geodata
+                workflows while retaining full control over permissions,
+                infrastructure, and data ownership.
+              </p>
+
+              <div>
+                <h2>Stay in the loop</h2>
+                <p>
+                  <a id="newsletter"
+                    href="https://opengis.ch/newsletter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Subscribe to our newsletter
+                  </a>
+                  to stay up to date on Georama releases, features, and related
+                  projects.
+                </p>
+              </div>
+
+              <div>
+                <h2>Open-source</h2>
+                <p>
+                  Georama will be released as open-source software.
+                  This guarantees transparency, long-term sustainability, and
+                  the freedom to inspect, adapt, and extend the platform to fit
+                  your own infrastructure and workflows.
+                </p>
+              </div>
+
+              <div class="span4">
+                <h2>Credits</h2>
+                <p>
+                  Georama is developed by
+                  <a
+                    href="https://www.opengis.ch/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    OPENGIS.ch</a
+                  >, a Swiss company specialising in professional open-source
+                  geospatial solutions. OPENGIS.ch provides consulting,
+                  development, training, and long-term support for open-source
+                  software including QGIS, QField, PostGIS, and related
+                  technologies.
+                </p>
+              </div>
+            </div>
+          </div>
     </div>
-    {{ end }}
+  </section>
+  <div class="container text-center">
     <small class="text-muted">{{ .Site.Copyright | safeHTML }}</small>
   </div>
 </footer>

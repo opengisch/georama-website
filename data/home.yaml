@@ -4,11 +4,11 @@ hero:
     main: "SCALABLE WEB PUBLISHING"
     suffix: "FOR QGIS"
   description: "GEORAMA streamlines the process of serving geodata through modern **open standards** while giving you full control over **permissions.**"
-  visual_label: "[VISUAL]"
-  visual_text: "A small representation of what's going on behind the scenes of your deployment."
+  visual_label: ""
+  visual_text: ""
   cta:
     text: "Stay up to date!"
-    url: "#contact"
+    url: "#newsletter"
   image: "images/hero-visual.svg"
 
 functionality:
@@ -56,7 +56,4 @@ extensibility:
   description: "Whether you're building a custom geodata pipeline or integrating with third parties, Georama is designed to plug into your ecosystem. Modules for modular deployments designed to cooperate nicely with QGIS."
   button:
     text: "Get in touch!"
-    url: "#contact"
-
-footer:
-  note: "about opengis - contact - etc."
+    url: "mailto://sales@opengis.ch"

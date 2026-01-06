@@ -6,7 +6,7 @@ timeZone = 'UTC'
 enableRobotsTXT = true
 defaultContentLanguage = 'en'
 
-copyright = '© 2025'
+copyright = 'OPENGIS.ch © 2026'
 
 [params]
   description = 'Scalable web publishing for QGIS.'
@@ -36,25 +36,22 @@ copyright = '© 2025'
 
 [[menu.main]]
   name = 'Demo'
-  url = '#demo'
+  url = 'https://demo.georama.io'
   weight = 10
+
+  [menu.main.params]
+    target = "_blank"
 
 [[menu.main]]
   name = 'Resources'
-  url = '#resources'
+  url = 'https://docs.georama.io/'
   weight = 20
+
+  [menu.main.params]
+    target = "_blank"
 
 [[menu.main]]
   name = 'Contact'
   url = '#contact'
   weight = 30
 
-[[menu.footer]]
-  name = 'About'
-  url = '#about'
-  weight = 10
-
-[[menu.footer]]
-  name = 'Contact'
-  url = '#contact'
-  weight = 20
