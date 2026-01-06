@@ -2,7 +2,7 @@ baseURL: https://georama.io/
 languageCode: en
 title: Georama
 theme: qfield-theme-v3
-timeZone: UTC
+timeZone: Europe/Zurich
 enableRobotsTXT: true
 defaultContentLanguage: en
 
