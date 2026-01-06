@@ -54,16 +54,27 @@
               {{ range .Children -}}
               {{- $active = eq .Name $current.LinkTitle -}}
               <li>
-                <a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | relLangURL }}" {{ if $active }}aria-current="true" {{ end }}>
-                  {{ .Name }}
-                </a>
+                <a class="dropdown-item{{ if $active }} active{{ end }}"
+   href="{{ .URL | relLangURL }}"
+   {{ with .Params.target }}target="{{ . }}"{{ if eq . "_blank" }} rel="noopener noreferrer"{{ end }}{{ end }}
+   {{ if $active }}aria-current="true"{{ end }}>
+  {{ .Name }}
+</a>
+
               </li>
               {{ end -}}
             </ul>
           </li>
           {{ else }}
           <li class="nav-item">
-            <a class="nav-link{{ if $active }} active{{ end }}" aria-current="page" href="{{ .URL | relLangURL }}"{{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>{{ .Name }}</a>
+            <a class="nav-link{{ if $active }} active{{ end }}"
+   aria-current="page"
+   href="{{ .URL | relLangURL }}"
+   {{ with .Params.target }}target="{{ . }}"{{ if eq . "_blank" }} rel="noopener noreferrer"{{ end }}{{ end }}
+   {{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>
+  {{ .Name }}
+</a>
+
           </li>
           {{ end }}
           {{ end -}}
