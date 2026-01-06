@@ -1,3 +1,4 @@
+---
 hero:
   eyebrow: ""
   title:
@@ -60,3 +61,4 @@ extensibility:
   button:
     text: "Get in touch!"
     url: "https://opengis.ch/contact"
+---
