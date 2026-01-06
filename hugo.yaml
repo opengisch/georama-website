@@ -1,0 +1,54 @@
+baseURL: https://georama.io/
+languageCode: en
+title: Georama
+theme: qfield-theme-v3
+timeZone: UTC
+enableRobotsTXT: true
+defaultContentLanguage: en
+
+copyright: "OPENGIS.ch © 2026"
+
+params:
+  description: Scalable web publishing for QGIS.
+  mainMenuLogo: images/main.svg
+  showTitle: false
+  enableDarkMode: true
+  defaultTheme: light
+  themeColorLight: "#ffffff"
+  themeColorDark: "#262626"
+  languageISO: EN
+  cta_text: Get in touch
+  cta_link: "#contact"
+  images:
+    - images/hero-visual.svg
+
+  webSite:
+    image: images/hero-visual.svg
+
+  organization:
+    legalName: Georama
+    logo: images/main.svg
+
+  options:
+    bootStrapJs: true
+    breadCrumb: false
+    listCategoryFilter: false
+    listTagFilter: false
+
+menu:
+  main:
+    - name: Demo
+      url: https://demo.georama.io
+      weight: 10
+      params:
+        target: _blank
+
+    - name: Resources
+      url: https://docs.georama.io/
+      weight: 20
+      params:
+        target: _blank
+
+    - name: Contact
+      url: "#contact"
+      weight: 30
