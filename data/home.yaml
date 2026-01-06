@@ -43,13 +43,13 @@ cta:
   buttons:
     - text: "Quickstart tutorial"
       style: "primary"
-      url: "#resources"
+      url: "https://docs.georama.io/quick_start/"
     - text: "Visit our demo"
       style: "outline"
-      url: "#demo"
+      url: "https://demo.georama.io/"
     - text: "API reference"
       style: "ghost"
-      url: "#resources"
+      url: "https://docs.georama.io/api_references/overview/"
 
 extensibility:
   title: "Built for extensibility"

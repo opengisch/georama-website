@@ -18,7 +18,8 @@
       </a>
 
       <!-- Menu Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -47,19 +48,19 @@
           {{- $active = or $active (and (eq .Name "Blog") (eq $current.Section "blog" "contributors")) -}}
           {{ if .HasChildren }}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               {{ .Name }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               {{ range .Children -}}
               {{- $active = eq .Name $current.LinkTitle -}}
               <li>
-                <a class="dropdown-item{{ if $active }} active{{ end }}"
-   href="{{ .URL | relLangURL }}"
-   {{ with .Params.target }}target="{{ . }}"{{ if eq . "_blank" }} rel="noopener noreferrer"{{ end }}{{ end }}
-   {{ if $active }}aria-current="true"{{ end }}>
-  {{ .Name }}
-</a>
+                <a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | relLangURL }}" {{ with
+                  .Params.target }}target="{{ . }}" {{ if eq . "_blank" }} rel="noopener noreferrer" {{ end }}{{ end }}
+                  {{ if $active }}aria-current="true" {{ end }}>
+                  {{ .Name }}
+                </a>
 
               </li>
               {{ end -}}
@@ -67,13 +68,11 @@
           </li>
           {{ else }}
           <li class="nav-item">
-            <a class="nav-link{{ if $active }} active{{ end }}"
-   aria-current="page"
-   href="{{ .URL | relLangURL }}"
-   {{ with .Params.target }}target="{{ . }}"{{ if eq . "_blank" }} rel="noopener noreferrer"{{ end }}{{ end }}
-   {{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>
-  {{ .Name }}
-</a>
+            <a class="nav-link{{ if $active }} active{{ end }}" aria-current="page" href="{{ .URL | relLangURL }}" {{
+              with .Params.target }}target="{{ . }}" {{ if eq . "_blank" }} rel="noopener noreferrer" {{ end }}{{ end }}
+              {{ with .Title }} title='{{ . }}' aria-label='{{ . }}' {{ end }}>
+              {{ .Name }}
+            </a>
 
           </li>
           {{ end }}
@@ -85,12 +84,14 @@
         <div class="menu-language order-md-2">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarLanguageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" id="navbarLanguageDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 {{ .Site.Params.languageISO }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarLanguageDropdown">
                 <li>
-                  <a class="dropdown-item active" aria-current="true" href="{{ .RelPermalink }}"{{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>
+                  <a class="dropdown-item active" aria-current="true" href="{{ .RelPermalink }}" {{ with .Title }}
+                    title='{{ . }}' aria-label='{{ . }}' {{ end }}>
                     {{ .Site.Language.LanguageName }}
                   </a>
                 </li>
@@ -100,7 +101,8 @@
                 {{ if .IsTranslated -}}
                 {{ range .Translations }}
                 <li>
-                  <a class="dropdown-item" rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}"{{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>
+                  <a class="dropdown-item" rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}"
+                    lang="{{ .Lang }}" {{ with .Title }} title='{{ . }}' aria-label='{{ . }}' {{ end }}>
                     {{ .Language.LanguageName }}
                   </a>
                 </li>
@@ -109,7 +111,8 @@
                 {{ range .Site.Home.AllTranslations -}}
                 {{ if ne $.Site.Language.Lang .Language.Lang }}
                 <li>
-                  <a class="dropdown-item" rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}"{{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>
+                  <a class="dropdown-item" rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}"
+                    lang="{{ .Lang }}" {{ with .Title }} title='{{ . }}' aria-label='{{ . }}' {{ end }}>
                     {{ .Language.LanguageName }}
                   </a>
                 </li>
@@ -128,7 +131,9 @@
           <ul class="navbar-nav">
             {{ range .Site.Menus.social -}}
             <li class="nav-item">
-              <a class="nav-link" href="{{ .URL | relLangURL }}" target='{{ if in .URL "https://" }}_blank{{ else }}_self{{ end }}'{{ with .Title }} title='{{ . }}' aria-label='{{ . }}'{{ end }}>
+              <a class="nav-link" href="{{ .URL | relLangURL }}"
+                target='{{ if in .URL "https://" }}_blank{{ else }}_self{{ end }}' {{ with .Title }} title='{{ . }}'
+                aria-label='{{ . }}' {{ end }}>
                 {{ .Pre | safeHTML }}<small class="ms-2 d-md-none">{{ .Name | safeHTML }}</small>
               </a>
             </li>
