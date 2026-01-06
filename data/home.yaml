@@ -59,4 +59,4 @@ extensibility:
   description: "Whether you're building a custom geodata pipeline or integrating with third parties, Georama is designed to plug into your ecosystem. Modules for modular deployments designed to cooperate nicely with QGIS."
   button:
     text: "Get in touch!"
-    url: "mailto://sales@opengis.ch"
+    url: "https://opengis.ch/contact"

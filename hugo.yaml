@@ -50,5 +50,5 @@ menu:
         target: _blank
 
     - name: Contact
-      url: "#contact"
+      url: "https://opengis.ch/contact"
       weight: 30
