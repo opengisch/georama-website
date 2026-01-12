@@ -6,7 +6,10 @@ hero:
       line1: "SCALABLE"
       line2: "WEB PUBLISHING"
     suffix: "FOR QGIS"
-  description: "GEORAMA streamlines the process of serving geodata through modern **open standards** while giving you full control over **permissions.**"
+  description:
+    line1: "GEORAMA streamlines the process of serving"
+    line2: "geodata through modern **open standards**"
+    line3: "while giving you full control over **permissions**."
   visual_label: ""
   visual_text: ""
   cta:

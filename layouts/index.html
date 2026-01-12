@@ -32,7 +32,9 @@
             {{ if $titleSuffix }} <span class="fw-light">{{$titleSuffix }}</span>{{ end }}
           </h1>
           <div class="hero-description lead text-secondary mb-4">
-            {{ .description | markdownify }}
+            {{ .description.line1 | markdownify }} <br>
+            {{ .description.line2 | markdownify }} <br>
+            {{ .description.line3 | markdownify }} <br>
           </div>
           <div class="d-flex align-items-start gap-3 mb-4">
             <span class="badge rounded-pill text-uppercase text-brand-emphasis bg-brand-soft px-3 py-2">{{ .visual_label
