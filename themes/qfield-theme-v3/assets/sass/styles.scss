@@ -16,7 +16,7 @@
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
-  
+
   /* Ensure smooth scrolling behavior */
   will-change: transform;
 }
@@ -86,7 +86,7 @@ html {
   .page-link {
     color: var(--qfield-color);
     border-color: var(--qfield-color);
-    
+
     &:hover,
     &:focus {
       color: #fff;
@@ -94,13 +94,13 @@ html {
       border-color: var(--qfield-color);
     }
   }
-  
+
   .page-item.active .page-link {
     background-color: var(--qfield-color);
     border-color: var(--qfield-color);
     color: #fff;
   }
-  
+
   .page-item.disabled .page-link {
     color: #6c757d;
     border-color: #dee2e6;
@@ -121,10 +121,10 @@ html {
   /* Override Bootstrap card rounded corners to match design */
   .card {
     border-radius: 0 !important;
-    
+
     /* Card hover effects */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    
+
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
@@ -183,11 +183,11 @@ html {
     .green-link {
       transition: none;
     }
-    
+
     .card:hover {
       transform: none;
     }
-    
+
     .green-link:hover {
       transform: none;
     }
@@ -472,11 +472,11 @@ html {
 
 .carousel {
   height: 400px;
-  
+
   @media (max-width: 768px) {
     height: 300px;
   }
-  
+
   @media (max-width: 576px) {
     height: 250px;
   }
@@ -488,11 +488,11 @@ html {
   width: 100% !important; // Fill the whole carousel width
   object-fit: cover !important; // Crop to fit, maintaining aspect ratio
   object-position: center center !important; // Keep crop centered
-  
+
   @media (max-width: 768px) {
     height: 300px !important;
   }
-  
+
   @media (max-width: 576px) {
     height: 250px !important;
   }
@@ -502,19 +502,19 @@ html {
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  
+
   .carousel-inner {
     border-radius: 0.5rem;
-    
+
     .carousel-item {
       text-align: center;
-      
+
       .figure {
         margin: 0;
         width: 100%;
         display: flex;
         justify-content: center;
-        
+
         .gallery-img.img-fluid {
           // height: 400px !important; // Force exact height for all images
           width: 100% !important; // Full width of container
@@ -526,12 +526,12 @@ html {
           box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease-in-out;
           display: block;
-          
+
           &:hover {
             transform: scale(1.02);
           }
         }
-        
+
         .figure-caption {
           margin-top: 1rem;
           font-size: 1rem;
@@ -546,7 +546,7 @@ html {
       }
     }
   }
-  
+
   /* Custom carousel controls */
   .carousel-control-prev,
   .carousel-control-next {
@@ -555,34 +555,34 @@ html {
     opacity: 0.9;
     transition: opacity 0.3s ease-in-out;
     z-index: 10;
-    
+
     @media (max-width: 768px) {
       width: 15%;
     }
-    
+
     &:hover,
     &:focus {
       opacity: 1;
     }
-    
+
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
       background-size: 2rem 2rem;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-      
+
       // QField green color filter
       filter: brightness(0) saturate(100%) invert(73%) sepia(25%) saturate(1482%) hue-rotate(38deg) brightness(95%) contrast(88%) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-      
+
       @media (max-width: 768px) {
         background-size: 2.5rem 2.5rem;
       }
     }
   }
-  
+
   /* Custom carousel indicators */
   .carousel-indicators {
     margin-bottom: 1rem;
-    
+
     [data-bs-target] {
       width: 12px;
       height: 12px;
@@ -591,20 +591,20 @@ html {
       background-color: transparent;
       opacity: 0.5;
       transition: all 0.3s ease-in-out;
-      
+
       &.active {
         background-color: var(--qfield-color);
         opacity: 1;
         transform: scale(1.2);
       }
-      
+
       &:hover {
         opacity: 0.8;
         transform: scale(1.1);
       }
     }
   }
-  
+
 }
 
 /* ============================================================================
@@ -619,11 +619,11 @@ html {
   z-index: 9999;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  
+
   &--active {
     opacity: 1;
   }
-  
+
   &__backdrop {
     position: absolute;
     top: 0;
@@ -632,7 +632,7 @@ html {
     height: 100%;
     background: rgba(0, 0, 0, 0.95);
   }
-  
+
   &__container {
     position: relative;
     width: 100%;
@@ -641,7 +641,7 @@ html {
     align-items: center;
     justify-content: center;
   }
-  
+
   &__content {
     position: relative;
     max-width: 90vw;
@@ -650,7 +650,7 @@ html {
     flex-direction: column;
     align-items: center;
   }
-  
+
   &__image {
     max-width: 100%;
     max-height: 85vh;
@@ -658,7 +658,7 @@ html {
     border-radius: 0.5rem;
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
   }
-  
+
   &__caption {
     margin-top: 1.5rem;
     color: #fff;
@@ -667,7 +667,7 @@ html {
     max-width: 800px;
     padding: 0 1rem;
   }
-  
+
   &__close {
     position: absolute;
     top: 1.5rem;
@@ -686,13 +686,13 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     &:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: scale(1.1);
     }
   }
-  
+
   &__prev,
   &__next {
     position: absolute;
@@ -710,45 +710,45 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
       filter: brightness(0) invert(1);
       background-size: 1.5rem 1.5rem;
     }
-    
+
     &:hover {
       background: rgba(var(--qfield-color-rgb, 128, 204, 40), 1);
       transform: translateY(-50%) scale(1.1);
     }
-    
+
     @media (max-width: 768px) {
       width: 3rem;
       height: 3rem;
-      
+
       .carousel-control-prev-icon,
       .carousel-control-next-icon {
         background-size: 1.2rem 1.2rem;
       }
     }
   }
-  
+
   &__prev {
     left: 2rem;
-    
+
     @media (max-width: 768px) {
       left: 1rem;
     }
   }
-  
+
   &__next {
     right: 2rem;
-    
+
     @media (max-width: 768px) {
       right: 1rem;
     }
   }
-  
+
   &__counter {
     position: absolute;
     bottom: 2rem;
