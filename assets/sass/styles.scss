@@ -104,7 +104,8 @@ b, strong {
   color: var(--brand-ink);
   border: 1px solid var(--btn-cta-accent);
   border-radius: 14px;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 16px;
   padding: 0.85rem 1.5rem;
   box-shadow: 3px 3px 0 var(--btn-cta-accent);
   text-decoration: none;
@@ -291,7 +292,7 @@ b, strong {
 }
 
 .cta-buttons .btn-cta {
-  text-transform: uppercase;
+  // text-transform: uppercase;
   letter-spacing: 0.04em;
   width: 100%;
   flex: 1 1 0;
@@ -299,6 +300,7 @@ b, strong {
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-weight: 700;
 }
 
 .cta-panel h3 {
