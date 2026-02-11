@@ -405,16 +405,15 @@ b, strong {
 }
 
 #about.section-contour {
-  aspect-ratio: 2400 / 1457;
+  aspect-ratio: 2550 / 2000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0rem 0 0rem;
-  background: #ffffff url("/images/path_bottom.png") center / 100% 100% no-repeat;
+  padding: 0;
+  background: #ffffff url("/images/bottom_waves.svg") center / cover no-repeat;
 }
-
 [data-bs-theme="dark"] #about.section-contour {
-  background: #262626 url("/images/path_bottom_dark.png") center / 100% 100% no-repeat;
+  background: #262626 url("/images/bottom_waves.svg") center / 100% 100% no-repeat;
 }
 
 #about.section-contour::before {
@@ -422,10 +421,13 @@ b, strong {
 }
 
 #about div.container {
+  padding: 40px;
   border-radius: 15px;
-  background: #d3d4d055;
+  border: #80cc28 2px dashed;
+  background: white;
   max-width: 90%;
   color:#000000;
+  box-shadow: var(--bs-box-shadow-sm) !important
 }
 
 #resources.section-block {
