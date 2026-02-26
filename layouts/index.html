@@ -139,31 +139,40 @@
   </section>
   {{ end }}
 
-  <section class="section-path-top" aria-hidden="true">
-    <img src="{{ "images/path_top.png" | relURL }}" alt="">
-  </section>
+  <!-- <section class="section-path-top" aria-hidden="true">
+    <img src="{{ "images/bottom_waves_1.svg" | relURL }}" alt="">
+  </section> -->
+  
+{{ with $home.extensibility }}
+<section id="demo" class="section-extensibility position-relative text-white py-5">
 
-  {{ with $home.extensibility }}
-  <section id="demo" class="section-extensibility position-relative text-white py-5">
-    <div class="container position-relative">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <div class="extensibility-icon mb-3">
-            <img src="{{ "images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
-          </div>
-          <h2 id="contact" class="fw-bold mb-3">{{ .title }}</h2>
-          <p class="lead mb-4">{{ .description }}</p>
-          {{ with .button }}
-          <a class="btn btn-cta" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank" }}
-            rel="noopener noreferrer" {{ end }}{{ end }}>
-            {{ .text }}
-          </a>
-          {{ end }}
+  <!-- SVG as full-width positioned image, not CSS background -->
+  <img
+    src="{{ "images/bottom_waves_1.svg" | relURL }}"
+    alt=""
+    aria-hidden="true"
+    class="extensibility-bg"
+  >
+
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="extensibility-icon mb-3">
+          <img src="{{ "images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
         </div>
+        <h2 id="contact" class="fw-bold mb-3">{{ .title }}</h2>
+        <p class="lead mb-4">{{ .description }}</p>
+        {{ with .button }}
+        <a class="btn btn-cta" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank" }}
+          rel="noopener noreferrer" {{ end }}{{ end }}>
+          {{ .text }}
+        </a>
+        {{ end }}
       </div>
     </div>
-  </section>
-  {{ end }}
+  </div>
+</section>
+{{ end }}
 
 </main>
 
