@@ -409,8 +409,6 @@ b, strong {
   background-image: url("/images/wave-bottom.svg");
 }
 
-
-
 .section-contour {
   position: relative;
   background: #ffffff;
@@ -441,6 +439,7 @@ b, strong {
   margin-right: calc(50% - 50vw);
   overflow: hidden;
 }
+
 // [data-bs-theme="dark"] #about.section-contour {
 //   background: #262626 url("/images/bottom_waves.svg") center / 100% 100% no-repeat;
 // }
@@ -449,7 +448,7 @@ b, strong {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("/images/bottom_waves_2.svg") center / 100% 100% no-repeat;
+  background: url("/images/bottom_waves_1.svg") center / 100% 100% no-repeat;
   opacity: 1;
   z-index: 0;
 }
@@ -461,6 +460,10 @@ b, strong {
   background: none;
   max-width: 90%;
   color:#000000;
+}
+
+[data-bs-theme="dark"] #about div.container {
+  color: white;
 }
 
 #resources.section-block {
