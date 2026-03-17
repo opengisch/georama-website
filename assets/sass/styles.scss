@@ -335,10 +335,34 @@ b, strong {
 }
 
 .section-extensibility {
-  background: #7c993dff;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   overflow: hidden;
-  padding-top: 5rem;
-  padding-bottom: 8rem;
+  display: grid;
+  background: none;
+
+  > * {
+    grid-area: 1 / 1;
+  }
+
+  .extensibility-bg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1; // text sits above the SVG
+    align-self: center;
+    padding-top: clamp(2rem, 5vw, 5rem);
+    padding-bottom: clamp(2rem, 5vw, 5rem);
+  }
 }
 
 .section-extensibility .lead {
@@ -385,8 +409,6 @@ b, strong {
   background-image: url("/images/wave-bottom.svg");
 }
 
-
-
 .section-contour {
   position: relative;
   background: #ffffff;
@@ -410,24 +432,38 @@ b, strong {
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: #ffffff url("/images/bottom_waves.svg") center / cover no-repeat;
-}
-[data-bs-theme="dark"] #about.section-contour {
-  background: #262626 url("/images/bottom_waves.svg") center / 100% 100% no-repeat;
+  background: none;
+  margin-top: clamp(-15rem, -40vw, -30rem);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
 }
 
+// [data-bs-theme="dark"] #about.section-contour {
+//   background: #262626 url("/images/bottom_waves.svg") center / 100% 100% no-repeat;
+// }
+
 #about.section-contour::before {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/bottom_waves_1.svg") center / 100% 100% no-repeat;
+  opacity: 1;
+  z-index: 0;
 }
 
 #about div.container {
+  position: relative;
+  z-index: 1;
   padding: 40px;
-  border-radius: 15px;
-  border: #80cc28 2px dashed;
-  background: white;
+  background: none;
   max-width: 90%;
   color:#000000;
-  box-shadow: var(--bs-box-shadow-sm) !important
+}
+
+[data-bs-theme="dark"] #about div.container {
+  color: white;
 }
 
 #resources.section-block {
@@ -484,6 +520,10 @@ footer hr {
 @media (max-width: 767.98px) {
   :root {
     --navbar-height: 170px;
+  }
+
+  #about.section-contour {
+    margin-top: clamp(-3rem, -8vw, -1.25rem);
   }
 
   .navbar-brand img {
