@@ -1,0 +1,3 @@
+[submodule "themes/opengis-hugo-theme"]
+	path = themes/opengis-hugo-theme
+url = git@github.com:opengisch/opengis-hugo-theme.git

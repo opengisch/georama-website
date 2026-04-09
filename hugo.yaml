@@ -1,7 +1,7 @@
 baseURL: https://georama.io/
 languageCode: en
 title: Georama
-theme: qfield-theme-v3
+theme: opengis-hugo-theme
 timeZone: Europe/Zurich
 enableRobotsTXT: true
 defaultContentLanguage: en
@@ -13,7 +13,7 @@ params:
   mainMenuLogo: images/main.svg
   showTitle: false
   enableDarkMode: true
-  defaultTheme: light
+  defaultColorMode: light
   themeColorLight: "#ffffff"
   themeColorDark: "#262626"
   languageISO: EN
