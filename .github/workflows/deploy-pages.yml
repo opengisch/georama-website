@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  HUGO_VERSION: "0.147.9"
+  HUGO_VERSION: "0.160.0"
   PRODUCTION_URL: "https://georama.io/"
   PREVIEW_ROOT: "https://georama.io/pr-preview"
   DEPLOY_BRANCH: "gh-pages"
@@ -26,12 +26,12 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          submodules: recursive
+          # Required so the SSH submodule URL is used as-is in CI.
           ssh-key: ${{ secrets.OPENGIS_HUGO_THEME_SSH_KEY }}
-          persist-credentials: false
+          submodules: true
 
       - name: Setup Hugo
         run: |
@@ -84,12 +84,12 @@ jobs:
       PREVIEW_URL: ${{ format('{0}/pr-{1}/', 'https://georama.io/pr-preview', github.event.pull_request.number) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          submodules: recursive
+          # Required so the SSH submodule URL is used as-is in CI.
           ssh-key: ${{ secrets.OPENGIS_HUGO_THEME_SSH_KEY }}
-          persist-credentials: false
+          submodules: true
 
       - name: Setup Hugo
         run: |
