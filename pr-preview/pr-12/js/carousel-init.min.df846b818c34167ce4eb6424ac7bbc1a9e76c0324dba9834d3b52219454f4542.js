@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",()=>{if(!window.bootstrap)return;document.querySelectorAll(".carousel").forEach(e=>{if(bootstrap.Carousel.getInstance(e))return;bootstrap.Carousel.getOrCreateInstance(e)})})

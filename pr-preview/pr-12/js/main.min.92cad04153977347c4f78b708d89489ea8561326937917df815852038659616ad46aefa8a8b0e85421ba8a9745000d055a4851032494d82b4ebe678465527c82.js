@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",()=>{if(!window.bootstrap)return;document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(e=>{bootstrap.Tooltip.getOrCreateInstance(e)}),document.querySelectorAll('[data-bs-toggle="popover"]').forEach(e=>{bootstrap.Popover.getOrCreateInstance(e)})})
