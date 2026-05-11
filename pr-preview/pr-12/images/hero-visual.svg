@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Georama deployment visual</title>
+  <desc id="desc">Abstract illustration of map layers and routes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8faf2"/>
+      <stop offset="100%" stop-color="#eef4df"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="432" rx="22" fill="#fff" stroke="#e6ecd9" stroke-width="3"/>
+  <g stroke="#e6ecd9" stroke-width="2">
+    <path d="M96 120h448M96 180h448M96 240h448M96 300h448M96 360h448" fill="none"/>
+    <path d="M160 96v288M240 96v288M320 96v288M400 96v288M480 96v288" fill="none"/>
+  </g>
+  <path d="M140 332c52-44 110-70 170-56 36 8 69 34 107 26 23-4 44-20 63-36 18-15 34-32 54-43 27-15 58-17 88-8" fill="none" stroke="#82b440" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M126 198c32 6 62-6 92-20s60-28 94-26c41 2 77 26 110 50 23 16 46 34 72 44 26 10 56 12 82 2" fill="none" stroke="#6f9e31" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+  <path d="M142 270c20-16 44-26 68-24 24 2 47 16 70 26 30 12 60 18 92 10 26-7 50-24 74-38 32-18 66-32 102-30" fill="none" stroke="#c3d97e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#fff" stroke="#82b440" stroke-width="4">
+    <circle cx="150" cy="332" r="12"/>
+    <circle cx="310" cy="276" r="12"/>
+    <circle cx="470" cy="268" r="12"/>
+    <circle cx="570" cy="216" r="12"/>
+  </g>
+  <g fill="#fff" stroke="#6f9e31" stroke-width="4">
+    <circle cx="150" cy="198" r="12"/>
+    <circle cx="340" cy="202" r="12"/>
+    <circle cx="520" cy="248" r="12"/>
+  </g>
+  <g fill="#fff" stroke="#c3d97e" stroke-width="4">
+    <circle cx="170" cy="270" r="10"/>
+    <circle cx="360" cy="290" r="10"/>
+    <circle cx="520" cy="252" r="10"/>
+  </g>
+  <rect x="56" y="80" width="528" height="320" rx="18" fill="none" stroke="#d9e4c3" stroke-width="3" stroke-dasharray="6 10"/>
+</svg>
