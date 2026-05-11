@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /404.html
+Disallow: /pr-preview/
+Sitemap: https://georama.io/sitemap.xml
+
