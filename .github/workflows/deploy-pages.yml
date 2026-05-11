@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  HUGO_VERSION: "0.147.9"
+  HUGO_VERSION: "0.160.0"
   PRODUCTION_URL: "https://georama.io/"
   PREVIEW_ROOT: "https://georama.io/pr-preview"
   DEPLOY_BRANCH: "gh-pages"
