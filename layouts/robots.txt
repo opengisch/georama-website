@@ -1,0 +1,12 @@
+User-agent: *
+{{- if eq hugo.Environment "production" }}
+Disallow: /404.html
+Disallow: /pr-preview/
+Sitemap: {{ "sitemap.xml" | absURL }}
+{{ with .Site.Home.OutputFormats.Get "LLMS" -}}
+# LLM index
+# {{ .Permalink }}
+{{- end }}
+{{- else }}
+Disallow: /
+{{- end }}
