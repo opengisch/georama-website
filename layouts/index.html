@@ -42,10 +42,6 @@
             <p class="mb-0 small text-muted">{{ .visual_text }}</p>
           </div>
           {{ with .cta }}
-          <a class="btn btn-cta btn-lg" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank" }}
-            rel="noopener noreferrer" {{ end }}{{ end }}>
-            {{ .text }}
-          </a>
           {{ end }}
           {{ end }}
         </div>
@@ -64,118 +60,30 @@
     </div>
   </section>
 
-  {{ with $home.functionality }}
-  <section class="section-block py-5">
-    <div class="container">
-      <h2 class="text-center section-heading mb-5">{{ .title }}</h2>
-      <div class="row g-4 g-lg-5 justify-content-center">
-        {{ range .items }}
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="feature-card h-100 text-center p-4">
-            <div class="icon-circle mb-3">
-              {{- $icon := .icon | default "" -}}
-              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon
-              ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
-              <img src="{{ $icon | relURL }}" alt="" aria-hidden="true" loading="lazy">
-              {{- else if $icon -}}
-              <i class="{{ $icon }} text-brand-emphasis"></i>
-              {{- end -}}
-            </div>
-            <h3 class="h5 fw-semibold">{{ .title }}</h3>
-            <p class="text-muted small mb-0">{{ .description }}</p>
-          </div>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
 
-  {{ with $home.expectations }}
-  <section class="section-block py-5">
-    <div class="container">
-      <h2 class="text-center section-heading mb-5">{{ .title }}</h2>
-      <div class="row g-4 g-lg-5 justify-content-center">
-        {{ range .items }}
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="feature-card h-100 text-center p-4">
-            <div class="icon-circle mb-3">
-              {{- $icon := .icon | default "" -}}
-              {{- if or (strings.HasSuffix $icon ".svg") (strings.HasSuffix $icon ".png") (strings.HasSuffix $icon
-              ".jpg") (strings.HasSuffix $icon ".jpeg") (strings.HasSuffix $icon ".webp") -}}
-              <img src="{{ $icon | relURL }}" alt="" aria-hidden="true" loading="lazy">
-              {{- else if $icon -}}
-              <i class="{{ $icon }} text-brand-emphasis"></i>
-              {{- end -}}
-            </div>
-            <h3 class="h5 fw-semibold">{{ .title }}</h3>
-            <p class="text-muted small mb-0">{{ .description }}</p>
-          </div>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
-
-  {{ with $home.cta }}
-  <section id="resources" class="section-block py-5">
-    <div class="container">
-      <div class="cta-panel cta-panel--dashed rounded-4 p-4 p-lg-5 shadow-sm">
-        <div class="text-center">
-          <h3 class="fw-bold mb-1">{{ .title }}</h3>
-          <p class="text-muted mb-0">{{ .subtitle }}</p>
-        </div>
-        <div class="cta-buttons d-flex flex-column flex-sm-row justify-content-center align-items-stretch gap-4 mt-4">
-          {{ range .buttons }}
-          <a class="btn btn-cta btn-cta--gold" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank"
-            }} rel="noopener noreferrer" {{ end }}{{ end }}>
-            {{ .text }}
-          </a>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </section>
-  {{ end }}
 
   <!-- <section class="section-path-top" aria-hidden="true">
     <img src="{{ "images/bottom_waves_1.svg" | relURL }}" alt="">
   </section> -->
 
 {{ with $home.extensibility }}
-<section id="demo" class="section-extensibility text-white">
+<!-- <section id="demo" class="section-extensibility text-white"> -->
 
   <!-- SVG as full-width positioned image, not CSS background -->
-  <img
+  <!-- <img
     src="{{ "images/bottom_waves.svg" | relURL }}"
     alt=""
     aria-hidden="true"
     class="extensibility-bg"
     width="1436"
     height="1153"
-  >
+  > -->
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center">
-        <div class="extensibility-icon mb-3">
-          <img src="{{ "images/icon-extensibility.svg" | relURL }}" alt="" aria-hidden="true" loading="lazy">
-        </div>
-        <h2 id="contact" class="fw-bold mb-3">{{ .title }}</h2>
-        <p class="lead mb-4">{{ .description }}</p>
-        {{ with .button }}
-        <a class="btn btn-cta" href="{{ .url }}" {{ with .target }}target="{{ . }}" {{ if eq . "_blank" }}
-          rel="noopener noreferrer" {{ end }}{{ end }}>
-          {{ .text }}
-        </a>
-        {{ end }}
-      </div>
-    </div>
-  </div>
-</section>
+
+<!-- </section> -->
+
 {{ end }}
 
-</div>
+<!-- </div> -->
 
 {{ end }}

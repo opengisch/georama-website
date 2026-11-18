@@ -37,15 +37,15 @@ params:
 
 menu:
   main:
-    - name: Demo
-      url: https://demo.georama.io
-      weight: 10
+    - name: Resources
+      url: https://opengisch.github.io/georama/
+      weight: 20
       params:
         target: _blank
 
-    - name: Resources
-      url: https://docs.georama.io/
-      weight: 20
+    - name: Github
+      url: "https://github.com/opengisch/georama"
+      weight: 30
       params:
         target: _blank
 

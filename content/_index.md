@@ -59,11 +59,4 @@ cta:
       style: "ghost"
       url: "https://docs.georama.io/api_references/overview/"
       target: _blank
-
-extensibility:
-  title: "Built for extensibility"
-  description: "Whether you're building a custom geodata pipeline or integrating with third parties, Georama is designed to plug into your ecosystem. Modules for modular deployments designed to cooperate nicely with QGIS."
-  button:
-    text: "Get in touch!"
-    url: "https://opengis.ch/contact"
 ---
