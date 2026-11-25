@@ -17,6 +17,18 @@ hero:
     url: "#newsletter"
   image: "images/georama-visual-test.svg"
 
+sandbox:
+  title: "Try it"
+  highlight: "yourself!"
+  text: "Curious? Head to **sandbox.georama.io** and log in with one of these accounts:"
+  users:
+    - "sandbox_admin"
+    - "sandbox_user"
+  password: "youCanTestGeorama"
+  button:
+    text: "sandbox.georama.io"
+    url: "https://sandbox.georama.io/"
+
 functionality:
   title: "User-friendly functionalities"
   items:

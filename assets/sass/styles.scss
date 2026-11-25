@@ -334,6 +334,49 @@ b, strong {
   text-decoration: underline;
 }
 
+.sandbox-panel {
+  position: relative;
+  z-index: 2; // the footer (#about) is pulled up with a negative margin and would cover the button
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1.5px dashed #7c993d;
+  border-radius: 24px;
+  background: var(--bs-body-bg);
+}
+
+.sandbox-title {
+  font-size: clamp(1.75rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--bs-body-color);
+}
+
+.sandbox-highlight {
+  color: #7c993d;
+}
+
+.sandbox-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  background: #f1f1ea;
+  font-weight: 500;
+
+  .bi {
+    color: #7c993d;
+  }
+}
+
+[data-bs-theme="dark"] .sandbox-pill {
+  background: var(--brand-cream);
+}
+
+.sandbox-button {
+  width: 100%;
+  max-width: 350px;
+}
+
 .section-extensibility {
   position: relative;
   width: 100vw;

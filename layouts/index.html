@@ -57,8 +57,33 @@
           </div>
         </div>
       </div>
+  </section>
+
+  {{ with $home.sandbox }}
+  <section id="sandbox" class="section-sandbox pb-5">
+    <div class="container">
+      <div class="sandbox-panel text-center px-3 py-4 px-md-5 py-md-5">
+        <h2 class="sandbox-title mb-3">{{ .title }} <span class="sandbox-highlight">{{ .highlight }}</span></h2>
+        <p class="mb-4">{{ .text | markdownify }}</p>
+        <div class="d-flex flex-wrap justify-content-center gap-1 mb-4">
+          <span class="sandbox-pill">
+            <i class="bi bi-person-fill" aria-hidden="true"></i>
+            <span class="visually-hidden">Username:</span>
+            {{- range $i, $user := .users }}{{ if $i }} <span class="fw-light">or</span>{{ end }} {{ $user }}{{ end }}
+          </span>
+          <span class="sandbox-pill">
+            <i class="bi bi-lock-fill" aria-hidden="true"></i>
+            <span class="visually-hidden">Password:</span>
+            {{ .password }}
+          </span>
+        </div>
+        {{ with .button }}
+        <a class="btn btn-cta btn-cta--gold sandbox-button" href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>
+        {{ end }}
+      </div>
     </div>
   </section>
+  {{ end }}
 
 
 
@@ -84,6 +109,6 @@
 
 {{ end }}
 
-<!-- </div> -->
+</div>
 
 {{ end }}
