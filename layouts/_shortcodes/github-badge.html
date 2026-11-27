@@ -1,0 +1,15 @@
+{{- /*
+  GitHub repository badge shortcode.
+
+    {{< github-badge "opengisch/georama" >}}
+    {{< github-badge repo="opengisch/georama" color="#809c40" stars="false" >}}
+
+  All parameters are documented in docs/github-badge.md.
+*/ -}}
+{{- $params := dict -}}
+{{- if .IsNamedParams -}}
+  {{- $params = .Params -}}
+{{- else -}}
+  {{- with .Get 0 -}}{{- $params = dict "repo" . -}}{{- end -}}
+{{- end -}}
+{{- partial "github-badge.html" (merge $params (dict "page" .Page)) -}}

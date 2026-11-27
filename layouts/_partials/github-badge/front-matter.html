@@ -1,0 +1,33 @@
+{{- /*
+  github-badge/front-matter.html — renders badges configured in page front matter.
+
+    github:                    # single repository
+      repo: opengisch/georama
+      color: "#809c40"
+
+    github_repositories:       # several repositories
+      - repo: opengisch/georama
+      - repo: opengisch/QField
+
+  Usage in a layout: {{ partial "github-badge/front-matter.html" . }}
+  Renders nothing when neither key is set.
+*/ -}}
+{{- $page := . -}}
+{{- $items := slice -}}
+{{- with $page.Params.github -}}
+  {{- if reflect.IsMap . -}}{{- $items = $items | append . -}}
+  {{- else -}}{{- $items = $items | append (dict "repo" .) -}}{{- end -}}
+{{- end -}}
+{{- with $page.Params.github_repositories -}}
+  {{- range . -}}
+    {{- if reflect.IsMap . -}}{{- $items = $items | append . -}}
+    {{- else -}}{{- $items = $items | append (dict "repo" .) -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $items }}
+<div class="github-badges">
+  {{- range . }}
+  {{ partial "github-badge.html" (merge . (dict "page" $page)) }}
+  {{- end }}
+</div>
+{{- end -}}

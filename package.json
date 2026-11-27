@@ -5,7 +5,8 @@
   "scripts": {
     "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:images:write": "node scripts/optimize-images.mjs --write",
-    "optimize:images:webp": "node scripts/optimize-images.mjs --write --webp"
+    "optimize:images:webp": "node scripts/optimize-images.mjs --write --webp",
+    "test": "node --test \"tests/**/*.test.mjs\""
   },
   "devDependencies": {
     "fast-glob": "^3.3.3",

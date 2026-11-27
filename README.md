@@ -35,6 +35,10 @@ Static images in `static/` are not automatically optimized by Hugo. This repo in
 - Overwrite originals with smaller PNG/JPG/SVG: `npm run optimize:images:write`
 - Also generate WebP sidecars: `npm run optimize:images:webp`
 
+## GitHub repository badge
+Insert a live repository badge (release, stars, forks) with `{{< github-badge "opengisch/georama" >}}`.
+See [docs/github-badge.md](docs/github-badge.md). Run the tests with `npm test`.
+
 ## Notes
 - Theme: `opengis-hugo-theme` (git submodule at `themes/opengis-hugo-theme`)
 - Content and layout: `data/home.yaml`, `layouts/index.html`

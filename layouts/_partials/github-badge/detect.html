@@ -1,0 +1,13 @@
+{{- /*
+  github-badge/detect.html — returns true when the page is known to contain a
+  GitHub badge before its content is rendered (shortcode or front matter), or
+  when site.Params.githubBadge.loadAssets is "always".
+*/ -}}
+{{- $p := . -}}
+{{- $found := false -}}
+{{- if eq (printf "%v" (index (index site.Params "githubbadge" | default dict) "loadassets")) "always" -}}
+  {{- $found = true -}}
+{{- else if $p -}}
+  {{- $found = or ($p.HasShortcode "github-badge") (isset $p.Params "github") (isset $p.Params "github_repositories") -}}
+{{- end -}}
+{{- return $found -}}

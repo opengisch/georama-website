@@ -578,3 +578,8 @@ footer hr {
     text-align: center;
   }
 }
+
+// GitHub badge in the home page navbar (see docs/github-badge.md)
+.navbar-github-badge .github-badge {
+  --github-badge-padding: 5px 16px 5px 10px;
+}

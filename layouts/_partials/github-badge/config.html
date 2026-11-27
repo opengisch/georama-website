@@ -1,0 +1,119 @@
+{{- /*
+  github-badge/config.html
+
+  Resolves and validates the configuration of one GitHub repository badge.
+
+  Priority: input parameters > site.Params.githubBadge > built-in defaults.
+  Parameter keys are matched case-insensitively, because Hugo lowercases
+  keys in site params and front matter.
+
+  Returns a dict with all keys of $defaults plus "repo" and "valid".
+  Invalid values emit a warning and fall back to the next priority level.
+*/ -}}
+{{- $in := . | default dict -}}
+{{- $at := "" -}}
+{{- with and (reflect.IsMap $in) (index $in "page") -}}{{- with .File -}}{{- $at = printf " (page %s)" .Path -}}{{- end -}}{{- end -}}
+{{- $site := index site.Params "githubbadge" | default dict -}}
+
+{{- $defaults := dict
+  "color" "#809c40"
+  "textColor" "#ffffff"
+  "icon" "git"
+  "release" true
+  "stars" true
+  "forks" true
+  "fallbackToTags" true
+  "cacheDuration" 3600
+  "width" "auto"
+  "height" "45px"
+  "borderRadius" "0px"
+  "target" "_blank"
+-}}
+{{- $boolKeys := slice "release" "stars" "forks" "fallbackToTags" -}}
+{{- $colorKeys := slice "color" "textColor" -}}
+{{- $lengthKeys := slice "width" "height" "borderRadius" -}}
+
+{{- $colorRe := `^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|(rgb|rgba|hsl|hsla)\([0-9.,%\s/]+\)|[a-zA-Z]{3,20}|var\(--[a-zA-Z0-9-]+\))$` -}}
+{{- $lengthRe := `^(auto|0|[0-9]+(\.[0-9]+)?(px|rem|em|%|ch|vw|vh))$` -}}
+{{- $repoRe := `^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})/[A-Za-z0-9._-]{1,100}$` -}}
+
+{{- $cfg := dict -}}
+{{- range $key, $default := $defaults -}}
+  {{- $lk := lower $key -}}
+  {{- $value := $default -}}
+  {{- $source := "default" -}}
+
+  {{- /* Walk sources from lowest to highest priority; later valid values win. */ -}}
+  {{- range $i, $src := slice $site $in -}}
+    {{- $raw := "" -}}
+    {{- $found := false -}}
+    {{- if reflect.IsMap $src -}}
+      {{- if isset $src $key -}}{{- $raw = index $src $key -}}{{- $found = true -}}
+      {{- else if isset $src $lk -}}{{- $raw = index $src $lk -}}{{- $found = true -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if and $found (ne (printf "%v" $raw) "") -}}
+      {{- $where := cond (eq $i 0) "params.githubBadge" "badge parameter" -}}
+      {{- $ok := false -}}
+      {{- $parsed := $raw -}}
+
+      {{- if in $boolKeys $key -}}
+        {{- $s := lower (printf "%v" $raw) -}}
+        {{- if in (slice "true" "1" "yes" "on") $s -}}{{- $parsed = true -}}{{- $ok = true -}}
+        {{- else if in (slice "false" "0" "no" "off") $s -}}{{- $parsed = false -}}{{- $ok = true -}}
+        {{- end -}}
+      {{- else if eq $key "cacheDuration" -}}
+        {{- $s := printf "%v" $raw -}}
+        {{- if findRE `^[0-9]+$` $s -}}
+          {{- $parsed = int $s -}}
+          {{- /* Enforce a floor to respect GitHub's unauthenticated rate limit. */ -}}
+          {{- if lt $parsed 60 -}}
+            {{- warnf "github-badge: cacheDuration %d is below the 60 s minimum; using 60%s." $parsed $at -}}
+            {{- $parsed = 60 -}}
+          {{- end -}}
+          {{- $ok = true -}}
+        {{- end -}}
+      {{- else if in $colorKeys $key -}}
+        {{- $s := trim (printf "%v" $raw) " " -}}
+        {{- if findRE $colorRe $s -}}{{- $parsed = $s -}}{{- $ok = true -}}{{- end -}}
+      {{- else if in $lengthKeys $key -}}
+        {{- $s := trim (printf "%v" $raw) " " -}}
+        {{- if findRE `^[0-9]+(\.[0-9]+)?$` $s -}}{{- $s = printf "%spx" $s -}}{{- end -}}
+        {{- if findRE $lengthRe $s -}}{{- $parsed = $s -}}{{- $ok = true -}}{{- end -}}
+      {{- else if eq $key "icon" -}}
+        {{- $s := lower (printf "%v" $raw) -}}
+        {{- if in (slice "git" "github") $s -}}{{- $parsed = $s -}}{{- $ok = true -}}{{- end -}}
+      {{- else if eq $key "target" -}}
+        {{- $s := printf "%v" $raw -}}
+        {{- if in (slice "_blank" "_self" "_parent" "_top") $s -}}{{- $parsed = $s -}}{{- $ok = true -}}{{- end -}}
+      {{- end -}}
+
+      {{- if $ok -}}
+        {{- $value = $parsed -}}
+        {{- $source = $where -}}
+      {{- else -}}
+        {{- warnf "github-badge: ignoring invalid %s %q in %s%s." $key (printf "%v" $raw) $where $at -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $cfg = merge $cfg (dict $key $value (printf "%sSource" $key) $source) -}}
+{{- end -}}
+
+{{- /* Repository identifier: required, "owner/name". */ -}}
+{{- $repo := "" -}}
+{{- if reflect.IsMap $in -}}
+  {{- with index $in "repo" -}}{{- $repo = trim (printf "%v" .) " /" -}}{{- end -}}
+{{- end -}}
+{{- $repo = strings.TrimPrefix "https://github.com/" $repo -}}
+{{- $repo = strings.TrimSuffix ".git" $repo -}}
+{{- $valid := false -}}
+{{- if and (findRE $repoRe $repo) (not (in (slice "." "..") (index (split $repo "/") 1))) -}}
+  {{- $valid = true -}}
+{{- else if eq $repo "" -}}
+  {{- warnf "github-badge: missing required parameter \"repo\" (expected \"owner/name\")%s." $at -}}
+{{- else -}}
+  {{- warnf "github-badge: invalid repository %q (expected \"owner/name\")%s; badge not rendered." $repo $at -}}
+{{- end -}}
+
+{{- return merge $cfg (dict "repo" $repo "valid" $valid) -}}

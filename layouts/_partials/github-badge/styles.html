@@ -1,0 +1,13 @@
+{{- /*
+  Badge stylesheet, loaded only on pages that contain a badge. Called from
+  header/header.html, which renders at the start of every page render.
+
+  It also resets the per-page flags used for template (partial) usage:
+  .Page.Store survives `hugo server` rebuilds, so without the reset a rebuilt
+  page would think its stylesheet had already been emitted.
+*/ -}}
+{{- .Store.Delete "githubBadgeUsed" -}}
+{{- .Store.Delete "githubBadgeCssRendered" -}}
+{{- if partial "github-badge/detect.html" . -}}
+  {{- partial "github-badge/assets.html" "css" -}}
+{{- end -}}

@@ -1,3 +1,4 @@
+{{- partial "github-badge/styles.html" . }}
 {{ if .Site.Params.alert -}}
 {{ partial "header/alert.html" . }}
 {{ end -}}
@@ -17,13 +18,12 @@
         {{ end}}
       </a>
 
-      <!-- Menu Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
       <div class="d-flex order-lg-2 ms-auto align-items-center gap-3">
+        {{ if .IsHome -}}
+        <div class="navbar-github-badge d-none d-lg-flex">
+          {{ partial "github-badge.html" (dict "repo" "opengisch/georama" "borderRadius" "0.375rem" "page" .) }}
+        </div>
+        {{ end -}}
         {{ if eq .Site.Params.enableDarkMode true -}}
         <button id="themeToggle" class="btn btn-outline-secondary" type="button" aria-label="Toggle theme">
           <i id="themeIcon" class="bi"></i>
@@ -31,7 +31,9 @@
         {{ end -}}
 
         <a class="btn btn-danger d-none d-lg-inline" href="{{ .Site.Params.cta_link }}">{{ .Site.Params.cta_text }}</a>
-        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <!-- Menu Toggler -->
+        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>

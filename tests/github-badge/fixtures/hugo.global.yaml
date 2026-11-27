@@ -1,0 +1,11 @@
+# Second overlay: global defaults via params.githubBadge (merged after hugo.fixture.yaml).
+params:
+  githubBadge:
+    color: "#123456"
+    textColor: "#fefefe"
+    icon: github
+    stars: false
+    cacheDuration: 7200
+    borderRadius: 4px
+    target: _self
+    loadAssets: always

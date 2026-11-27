@@ -1,0 +1,63 @@
+{{- /*
+  github-badge.html — GitHub repository badge (Material for MkDocs style).
+
+  Usage in templates:
+
+    {{ partial "github-badge.html" (dict "repo" "opengisch/georama" "color" "#809c40") }}
+
+  Optional key "page" (the current page) lets the partial load the badge
+  CSS/JS on pages where it cannot be auto-detected (see docs/github-badge.md).
+
+  Without JavaScript the badge is a static link showing icon and repository
+  name; statistics are filled in client-side by assets/js/github-badge.js.
+*/ -}}
+{{- $in := . | default dict -}}
+{{- $cfg := partial "github-badge/config.html" $in -}}
+
+{{- if $cfg.valid -}}
+  {{- $page := index $in "page" -}}
+
+  {{- /* Template usage on a page whose assets are not auto-detected: load them here, once. */ -}}
+  {{- if and $page (not (partial "github-badge/detect.html" $page)) -}}
+    {{- $page.Store.Set "githubBadgeUsed" true -}}
+    {{- if not ($page.Store.Get "githubBadgeCssRendered") -}}
+      {{- $page.Store.Set "githubBadgeCssRendered" true -}}
+      {{- partial "github-badge/assets.html" "css" -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Only emit custom properties that differ from the stylesheet defaults. */ -}}
+  {{- $vars := dict "color" "--github-badge-background" "textColor" "--github-badge-color" "width" "--github-badge-width" "height" "--github-badge-height" "borderRadius" "--github-badge-border-radius" -}}
+  {{- $style := slice -}}
+  {{- range $key, $var := $vars -}}
+    {{- if ne (index $cfg (printf "%sSource" $key)) "default" -}}
+      {{- $style = $style | append (printf "%s:%s" $var (index $cfg $key)) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $url := printf "https://github.com/%s" $cfg.repo -}}
+<a class="github-badge github-badge--icon-{{ $cfg.icon }}" href="{{ $url }}"
+  {{- if ne $cfg.target "_self" }} target="{{ $cfg.target }}"{{ end }}
+  {{- if eq $cfg.target "_blank" }} rel="noopener noreferrer"{{ end }}
+  {{- with $style }} style="{{ delimit . ";" | safeCSS }}"{{ end }}
+  data-github-badge data-repo="{{ $cfg.repo }}" data-release="{{ $cfg.release }}" data-stars="{{ $cfg.stars }}" data-forks="{{ $cfg.forks }}" data-fallback-to-tags="{{ $cfg.fallbackToTags }}" data-cache-duration="{{ $cfg.cacheDuration }}">
+  <span class="github-badge__icon">{{ partial "github-badge/icon.html" $cfg.icon }}</span>
+  <span class="github-badge__body">
+    <span class="github-badge__name" data-github-badge-name>{{ $cfg.repo }}</span>
+    <span class="github-badge__sr"> on GitHub</span>
+    {{- if or $cfg.release $cfg.stars $cfg.forks }}
+    <span class="github-badge__facts" data-github-badge-facts hidden>
+      {{- if $cfg.release }}
+      <span class="github-badge__fact github-badge__fact--release" data-github-badge-fact="release" hidden>{{ partial "github-badge/icon.html" "release" }}<span class="github-badge__sr">, latest release: </span><span data-github-badge-value></span></span>
+      {{- end }}
+      {{- if $cfg.stars }}
+      <span class="github-badge__fact github-badge__fact--stars" data-github-badge-fact="stars" hidden>{{ partial "github-badge/icon.html" "stars" }}<span class="github-badge__sr">, stars: </span><span data-github-badge-value></span></span>
+      {{- end }}
+      {{- if $cfg.forks }}
+      <span class="github-badge__fact github-badge__fact--forks" data-github-badge-fact="forks" hidden>{{ partial "github-badge/icon.html" "forks" }}<span class="github-badge__sr">, forks: </span><span data-github-badge-value></span></span>
+      {{- end }}
+    </span>
+    {{- end }}
+  </span>
+</a>
+{{- end -}}

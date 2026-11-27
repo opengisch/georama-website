@@ -1,0 +1,8 @@
+{{- /*
+  Badge script, emitted once per page. Called from footer/footer.html, which
+  renders after the page content, so badges rendered by templates with a
+  "page" argument are detected as well.
+*/ -}}
+{{- if or (partial "github-badge/detect.html" .) (.Store.Get "githubBadgeUsed") -}}
+  {{- partial "github-badge/assets.html" "js" -}}
+{{- end -}}

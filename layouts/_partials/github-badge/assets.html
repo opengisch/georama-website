@@ -1,0 +1,18 @@
+{{- /*
+  github-badge/assets.html — emits the badge stylesheet ("css") or script ("js").
+  Follows the theme convention: minified in development, minified +
+  fingerprinted with SRI in every other environment.
+*/ -}}
+{{- $kind := . -}}
+{{- $res := resources.Get (printf "%s/github-badge.%s" $kind $kind) -}}
+{{- with $res -}}
+  {{- $res = . | minify -}}
+  {{- if ne hugo.Environment "development" -}}
+    {{- $res = $res | fingerprint "sha512" -}}
+  {{- end -}}
+  {{- if eq $kind "css" }}
+<link rel="stylesheet" href="{{ $res.RelPermalink }}"{{ with $res.Data.Integrity }} integrity="{{ . }}" crossorigin="anonymous"{{ end }}>
+  {{- else }}
+<script src="{{ $res.RelPermalink }}"{{ with $res.Data.Integrity }} integrity="{{ . }}" crossorigin="anonymous"{{ end }} defer></script>
+  {{- end -}}
+{{- end -}}

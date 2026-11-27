@@ -1,0 +1,16 @@
+{{- /*
+  github-badge/icon.html — decorative inline SVG icons (no IDs, no external refs).
+  Usage: partial "github-badge/icon.html" "git" | "github" | "release" | "stars" | "forks"
+*/ -}}
+{{- $name := . -}}
+{{- if eq $name "git" -}}
+<svg class="github-badge__icon-svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><rect x="4.2" y="4.2" width="15.6" height="15.6" rx="2.4" transform="rotate(45 12 12)" fill="currentColor"/><g class="github-badge__git-branch" fill="none" stroke-width="1.6" stroke-linecap="round"><path d="M10 7.2 v9.6 M10 9 l4.6 3.4"/></g><g class="github-badge__git-nodes"><circle cx="10" cy="9" r="1.55"/><circle cx="10" cy="15.4" r="1.55"/><circle cx="14.8" cy="12.6" r="1.55"/></g></svg>
+{{- else if eq $name "github" -}}
+<svg class="github-badge__icon-svg" viewBox="0 0 16 16" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+{{- else if eq $name "release" -}}
+<svg class="github-badge__fact-svg" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M1.75 2.75v4.4l7.1 7.1a1 1 0 0 0 1.41 0l4-4a1 1 0 0 0 0-1.41l-7.1-7.1h-4.4a1 1 0 0 0-1 1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="5" cy="5" r="1.25" fill="currentColor"/></svg>
+{{- else if eq $name "stars" -}}
+<svg class="github-badge__fact-svg" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 1.2l2.02 4.1 4.53.66-3.28 3.2.77 4.5L8 11.53l-4.05 2.13.77-4.5-3.28-3.2 4.53-.66Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+{{- else if eq $name "forks" -}}
+<svg class="github-badge__fact-svg" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="4" cy="3.25" r="1.6"/><circle cx="12" cy="3.25" r="1.6"/><circle cx="8" cy="12.75" r="1.6"/><path d="M4 4.85v.9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-.9M8 7.75v3.4"/></g></svg>
+{{- end -}}

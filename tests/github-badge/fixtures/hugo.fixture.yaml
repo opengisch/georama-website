@@ -1,0 +1,17 @@
+# Overlay config for the GitHub badge tests: project layouts/assets plus fixture content.
+module:
+  mounts:
+    - source: tests/github-badge/fixtures/content
+      target: content
+    - source: content
+      target: content
+    - source: tests/github-badge/fixtures/layouts
+      target: layouts
+    - source: layouts
+      target: layouts
+    - source: assets
+      target: assets
+    - source: static
+      target: static
+    - source: archetypes
+      target: archetypes
